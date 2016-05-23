@@ -1,16 +1,28 @@
 package com.stride.android.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.stride.android.R;
+import com.stride.android.data.persistence.DatabaseHelper;
+import com.stride.android.ioc.ActivityComponent;
+import com.stride.android.service.SensorListener;
+import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
+
+  // maybe a better helper method like a Provider to get the steps
+  @Inject DatabaseHelper databaseHelper;
+
+  @Override public boolean isHomeAsUpEnabled() {
+    return false;
+  }
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -26,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
             .show();
       }
     });
+
+    Log.e("MainActivity", "steps: " + databaseHelper.getTotalSteps());
+
+    startService(new Intent(this, SensorListener.class));
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,5 +62,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override protected void injectActivity(ActivityComponent activityComponent) {
+    activityComponent.inject(this);
   }
 }

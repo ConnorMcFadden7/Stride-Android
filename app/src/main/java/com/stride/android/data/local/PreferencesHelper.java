@@ -14,9 +14,10 @@ import javax.inject.Singleton;
 
   private SharedPreferences mPrefs;
 
-  public static final String PREF_FILE_NAME_USER = "hairapp_user_prefs";
+  public static final String PREF_FILE_NAME_USER = "stride_user_prefs";
   public static final String PREF_KEY_FIRST_SIGN_IN = "key_first_sign_in";
   public static final String PREF_KEY_USER_OBJECT = "key_user";
+  public static final String PREF_KEY_PAUSED_STATE = "key_paused_state";
 
   private final Gson mGson = new Gson();
 
@@ -56,5 +57,13 @@ import javax.inject.Singleton;
 
   public void clearPreferences() {
     mPrefs.edit().clear().apply();
+  }
+
+  public void setPausedState(boolean isPaused) {
+    mPrefs.edit().putBoolean(PREF_KEY_PAUSED_STATE, isPaused).apply();
+  }
+
+  public boolean isPaused() {
+    return mPrefs.getBoolean(PREF_KEY_PAUSED_STATE, false);
   }
 }
