@@ -1,7 +1,7 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+  <!-- Default screen margins, per the Android Design guidelines. -->
+  <dimen name="activity_horizontal_margin">16dp</dimen>
+  <dimen name="activity_vertical_margin">16dp</dimen>
   <dimen name="fab_margin">16dp</dimen>
 
   <!-- Generic Margins -->
@@ -24,4 +24,9 @@
   <dimen name="generic_text_size_large">22sp</dimen>
   <dimen name="generic_text_size_larger">26sp</dimen>
   <dimen name="generic_text_size_gigantic">36sp</dimen>
+
+  <!-- Progress dimens -->
+  <dimen name="progress_size">260dp</dimen>
+  <dimen name="progress_margin_top">40dp</dimen>
+
 </resources>

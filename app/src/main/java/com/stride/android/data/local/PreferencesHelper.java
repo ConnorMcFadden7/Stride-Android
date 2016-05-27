@@ -66,4 +66,8 @@ import javax.inject.Singleton;
   public boolean isPaused() {
     return mPrefs.getBoolean(PREF_KEY_PAUSED_STATE, false);
   }
+
+  //public int setUserGoal() {
+
+  //}
 }

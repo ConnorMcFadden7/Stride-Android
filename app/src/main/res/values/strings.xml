@@ -1,4 +1,7 @@
 <resources>
   <string name="app_name">Stride</string>
   <string name="action_settings">Settings</string>
+
+  <!-- Dashboard -->
+  <string name="dashboard_steps_today">steps today</string>
 </resources>

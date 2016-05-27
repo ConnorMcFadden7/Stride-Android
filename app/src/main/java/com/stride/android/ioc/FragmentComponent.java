@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import com.stride.android.ioc.module.FragmentModule;
 import com.stride.android.ioc.scope.FragmentScope;
 import com.stride.android.ui.fragment.BaseFragment;
+import com.stride.android.ui.fragment.DashboardFragment;
+import com.stride.android.ui.fragment.TrophyFragment;
 import dagger.Subcomponent;
 
 /**
@@ -14,5 +16,7 @@ import dagger.Subcomponent;
 
   void inject(BaseFragment baseFragment);
 
-  //void inject(OnboardingWalkthroughFragment onboardingWalkthroughFragment);
+  void inject(DashboardFragment dashboardFragment);
+
+  void inject(TrophyFragment trophyFragment);
 }
