@@ -7,25 +7,16 @@
     android:layout_marginBottom="@dimen/generic_margin_smaller"
     >
 
-
   <TextView
       android:id="@+id/daily_goal_setter_title"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
       android:textColor="@color/colorPrimary"
-      android:text="Set a goal"
+      android:text="@string/dashboard_set_a_goal"
+      android:textStyle="bold"
       android:textSize="@dimen/generic_text_size_slightly_medium"
-      android:paddingTop="@dimen/generic_margin_slightly_smaller"
-      />
-
-  <TextView
-      android:id="@+id/daily_goal_setter_subtitle"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:text="NOW"
-      android:textColor="@color/colorPrimaryDark"
+      android:layout_marginLeft="@dimen/generic_margin_medium"
+      android:layout_marginTop="@dimen/generic_margin_medium"
       />
 
   <LinearLayout
@@ -33,7 +24,7 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:layout_marginTop="@dimen/generic_margin_slightly_larger"
-      android:layout_marginBottom="@dimen/generic_margin_smaller"
+      android:layout_marginBottom="@dimen/generic_margin_medium"
       >
 
     <View
@@ -42,35 +33,100 @@
         android:layout_weight="1"
         />
 
-    <TextView
-        android:id="@+id/tv_ten_thousand"
+    <RelativeLayout
+        android:id="@+id/container_goal_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="10000"
-        />
+        >
+
+      <ImageView
+          android:id="@+id/tv_ten_thousand"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/selector_goal_one"
+          android:background="@drawable/bg_touchable_transparent"
+          />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/tv_ten_thousand"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="@dimen/generic_margin_medium"
+          android:text="@string/dashboard_daily_goal_option_one"
+          android:textColor="@color/color_main_text"
+          android:textSize="@dimen/generic_text_size_slightly_medium"
+          />
+
+    </RelativeLayout>
+
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_weight="1"
         />
 
-    <TextView
-        android:id="@+id/tv_fifteen_thousand"
+    <RelativeLayout
+        android:id="@+id/container_goal_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="15000"
-        />
+        android:background="@drawable/bg_touchable_transparent"
+        >
+
+      <ImageView
+          android:id="@+id/tv_fifteen_thousand"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/selector_goal_two"
+          android:background="@drawable/bg_touchable_transparent"
+          />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/tv_fifteen_thousand"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="@dimen/generic_margin_medium"
+          android:text="@string/dashboard_daily_goal_option_two"
+          android:textColor="@color/color_main_text"
+          android:textSize="@dimen/generic_text_size_slightly_medium"
+          />
+
+    </RelativeLayout>
+
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_weight="1"
         />
-    <TextView
-        android:id="@+id/tv_twenty_five_thousand"
+
+    <RelativeLayout
+        android:id="@+id/container_goal_three"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="25000"
-        />
+        android:background="@drawable/bg_touchable_transparent"
+        >
+
+      <ImageView
+          android:id="@+id/tv_twenty_five_thousand"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/selector_goal_three"
+          android:background="@drawable/bg_touchable_transparent"
+          />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/tv_twenty_five_thousand"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="@dimen/generic_margin_medium"
+          android:text="@string/dashboard_daily_goal_option_three"
+          android:textColor="@color/color_main_text"
+          android:textSize="@dimen/generic_text_size_slightly_medium"
+          />
+
+    </RelativeLayout>
 
     <View
         android:layout_width="0dp"

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.stride.android.R;
@@ -48,9 +48,9 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
     }
   }
 
-  @BindView(R.id.tv_ten_thousand) TextView mFirstGoal;
-  @BindView(R.id.tv_fifteen_thousand) TextView mSecondGoal;
-  @BindView(R.id.tv_twenty_five_thousand) TextView mThirdGoal;
+  @BindView(R.id.tv_ten_thousand) ImageView mFirstGoal;
+  @BindView(R.id.tv_fifteen_thousand) ImageView mSecondGoal;
+  @BindView(R.id.tv_twenty_five_thousand) ImageView mThirdGoal;
 
   private int mGoal = -1;
   private ToggleListener mToggleListener = ToggleListener.NULL;
@@ -130,7 +130,7 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
     //
   }
 
-  private void select(TextView selectedView, TextView unselectedOne, TextView unselectedTwo) {
+  private void select(ImageView selectedView, ImageView unselectedOne, ImageView unselectedTwo) {
     //selectedView.setOptionSelected();
     //unselectedOne.setOptionUnselected();
     //unselectedTwo.setOptionUnselected();
