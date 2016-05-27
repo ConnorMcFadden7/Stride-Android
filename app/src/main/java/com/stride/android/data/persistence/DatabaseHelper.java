@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import java.util.Calendar;
+import java.util.Date;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -23,7 +24,7 @@ import javax.inject.Singleton;
   // Tables definitions
   private static final String TABLE_STEPS = "CREATE TABLE progress (" +
       "steps INTEGER NOT NULL, " +
-      "date INTEGER NOT NULL);";
+      "date TEXT NOT NULL);";
 
   @Inject DatabaseHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -40,7 +41,7 @@ import javax.inject.Singleton;
     }
   }
 
-  public void insertDay(long date, int steps) {
+  public void insertDay(String date, int steps) {
     Log.e("DatabaseHelper", "insertDay::date: " + date + " steps: " + steps);
     getWritableDatabase().beginTransaction();
     try {
@@ -52,11 +53,11 @@ import javax.inject.Singleton;
         values.put("steps", steps);
         getWritableDatabase().insert("progress", null, values);
 
-        Log.e("DatabaseHelper", "inserting");
+        Log.e("DatabaseHelper", "inserting::date: " + date);
 
         // add 'steps' to yesterdays count
         Calendar yesterday = Calendar.getInstance();
-        yesterday.setTimeInMillis(date);
+      //  yesterday.setTimeInMillis(date);
         yesterday.add(Calendar.DAY_OF_YEAR, -1);
         updateSteps(yesterday.getTimeInMillis(), steps);
       }
@@ -111,8 +112,48 @@ import javax.inject.Singleton;
     return 0;
   }
 
-  public int getCurrentSteps() {
-    int re = getDateGivenSteps(-1);
-    return re == Integer.MIN_VALUE ? 0 : re;
+  public int getSteps(final String date) {
+    Cursor c = getReadableDatabase().query("progress", new String[] { "steps" }, "date = ?",
+        new String[] { date }, null, null, null);
+    c.moveToFirst();
+    int re;
+    if (c.getCount() == 0) re = Integer.MIN_VALUE;
+    else re = c.getInt(0);
+    c.close();
+    return re;
   }
+
+ /* public int getTodaysSteps(int date) {
+    Cursor cursor = getReadableDatabase().query("progress", new String[] { "date" }, "date > 0", null, null, null, null);
+    cursor.moveToFirst();
+
+    //cursor.get
+
+    /*
+    public long getLastDay() {
+        Cursor c = getReadableDatabase()
+                .query(DB_NAME, new String[]{"date"}, null, null, null, null, "date DESC", "1");
+        long re;
+        if (c.moveToFirst()) {
+            re = c.getLong(0);
+        } else {
+            re = System.currentTimeMillis();
+        }
+        c.close();
+        return re;
+    }
+
+
+    c.moveToFirst();
+    int re;
+    if (c.getCount() == 0) {
+      re = Integer.MIN_VALUE;
+    } else {
+      re = c.getInt(0);
+    }
+    c.close();
+    return re;
+  }
+       */
+
 }

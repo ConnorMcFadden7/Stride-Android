@@ -14,6 +14,7 @@ import android.util.Log;
 import android.widget.Toast;
 import com.stride.android.data.persistence.DatabaseHelper;
 import com.stride.android.ioc.IocUtil;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.inject.Inject;
 
@@ -51,7 +52,9 @@ public class SensorListener extends Service implements SensorEventListener {
     if (steps > 0) {
       //WAIT_FOR_VALID_STEPS = false;
 
-      databaseHelper.insertDay(new Date().getTime(), steps);
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      String date = sdf.format(new Date());
+      databaseHelper.insertDay(date, steps);
 
       //// TODO: 23/05/16 store in db
       //updateNotificationState();

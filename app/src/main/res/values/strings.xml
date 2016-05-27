@@ -3,7 +3,7 @@
   <string name="action_settings">Settings</string>
 
   <!-- Dashboard -->
-  <string name="dashboard_steps_today">steps today</string>
+  <string name="dashboard_steps_today">%s steps today</string>
   <string name="dashboard_goal">Goal: %s</string>
   <string name="dashboard_calories">%s calories burnt today</string>
   <string name="dashboard_steps_yesterday">%s steps yesterday</string>

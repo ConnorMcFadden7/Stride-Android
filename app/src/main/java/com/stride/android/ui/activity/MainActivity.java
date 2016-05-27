@@ -14,6 +14,10 @@ import com.stride.android.ioc.ActivityComponent;
 import com.stride.android.service.SensorListener;
 import com.stride.android.ui.presenter.MainPresenter;
 import com.stride.android.ui.presenter.view.MainViewFactory;
+import com.stride.android.util.TimeUtils;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
@@ -36,10 +40,29 @@ public class MainActivity extends BaseActivity {
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    Log.e("MainActivity", "steps: " + databaseHelper.getTotalSteps());
+
+
+    Calendar yesterday = Calendar.getInstance();
+    yesterday.setTimeInMillis(1464460377503L);
+    yesterday.add(Calendar.DAY_OF_YEAR, -1);
+
+
+
+   // Log.e("MainActivity", "currentDate: " + date);
+
+
+    //    Log.e("MainActivity", "isToday: " + TimeUtils.isToday(1464460377503L));
+
+
 
     startService(new Intent(this, SensorListener.class));
     presentMainScreen();
+
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String date = sdf.format(new Date());
+
+    Log.e("MainActivity", "today: " + TimeUtils.getToday());
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

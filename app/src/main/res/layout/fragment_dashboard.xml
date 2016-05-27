@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:donut_progress="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dashboard_container"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-  <com.github.lzyzsd.circleprogress.DonutProgress
-      android:id="@+id/main_progress"
-      android:layout_width="@dimen/progress_size"
-      android:layout_height="@dimen/progress_size"
-      android:layout_marginTop="@dimen/progress_margin_top"
+  <FrameLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"
-      donut_progress:donut_progress="30"
-      donut_progress:donut_finished_color="@color/colorPrimary"
-      donut_progress:donut_unfinished_color="@color/progress_unfinished"
-      donut_progress:donut_text_color="@color/color_main_text"
-      />
+      android:layout_marginTop="@dimen/progress_margin_top"
+      >
+
+    <ProgressBar
+        android:id="@+id/main_progress"
+        android:layout_width="@dimen/progress_size"
+        android:layout_height="@dimen/progress_size"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/dashboard_progress_drawable"
+        android:background="@drawable/dashboard_progress_bg"
+        android:rotation="270"
+        style="?android:attr/progressBarStyleHorizontal"
+        />
+
+    <TextView
+        android:id="@+id/tv_current_steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/color_main_text"
+        android:textSize="@dimen/generic_text_size_slightly_medium"
+        />
+
+  </FrameLayout>
 
   <TextView
       android:id="@+id/tv_goal"
@@ -39,14 +55,14 @@
       android:textSize="@dimen/generic_text_size_slightly_medium"
       />
 
-    <TextView
-        android:id="@+id/tv_steps_yesterday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
-        android:textColor="@color/color_main_text"
-        android:textSize="@dimen/generic_text_size_slightly_medium"
-        />
+  <TextView
+      android:id="@+id/tv_steps_yesterday"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
+      android:textColor="@color/color_main_text"
+      android:textSize="@dimen/generic_text_size_slightly_medium"
+      />
 
 </LinearLayout>
