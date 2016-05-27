@@ -18,6 +18,7 @@ import javax.inject.Singleton;
   public static final String PREF_KEY_FIRST_SIGN_IN = "key_first_sign_in";
   public static final String PREF_KEY_USER_OBJECT = "key_user";
   public static final String PREF_KEY_PAUSED_STATE = "key_paused_state";
+  public static final String PREF_KEY_GOAL = "key_goal";
 
   private final Gson mGson = new Gson();
 
@@ -67,7 +68,11 @@ import javax.inject.Singleton;
     return mPrefs.getBoolean(PREF_KEY_PAUSED_STATE, false);
   }
 
-  //public int setUserGoal() {
+  public void setUserGoal(int goal) {
+    mPrefs.edit().putInt(PREF_KEY_GOAL, goal).apply();
+  }
 
-  //}
+  public int getUserGoal() {
+    return mPrefs.getInt(PREF_KEY_GOAL, -1);
+  }
 }
