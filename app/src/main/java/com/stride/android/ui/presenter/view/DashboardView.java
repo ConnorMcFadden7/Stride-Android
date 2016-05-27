@@ -49,8 +49,13 @@ import com.stride.android.util.StringUtil;
   }
 
   public void setGoalText(int goal) {
+    mDailyGoalPanel.updateUi(goal);
     mTodayProgress.setMax(goal);
     mTextGoal.setText(mContext.getString(R.string.dashboard_goal, StringUtil.formatNumber(goal)));
+  }
+
+  public void setGoalToggleListener(DailyGoalPanel.ToggleListener toggleListener) {
+    mDailyGoalPanel.setToggleListener(toggleListener);
   }
 
   public void setCaloriesText(int calories) {
