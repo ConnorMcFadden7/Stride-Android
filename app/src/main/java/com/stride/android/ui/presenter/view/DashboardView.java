@@ -8,9 +8,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.google.auto.factory.AutoFactory;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.stride.android.R;
 import com.stride.android.ui.animation.ProgressAnimation;
+import com.stride.android.ui.widget.DailyGoalPanel;
 import com.stride.android.util.StringUtil;
 
 /**
@@ -23,12 +26,18 @@ import com.stride.android.util.StringUtil;
   @BindView(R.id.tv_goal) TextView mTextGoal;
   @BindView(R.id.tv_calories) TextView mTextCalories;
   @BindView(R.id.tv_steps_yesterday) TextView mStepsYesterday;
+  @BindView(R.id.daily_goal_panel) DailyGoalPanel mDailyGoalPanel;
+  @BindView(R.id.sliding_layout) SlidingUpPanelLayout mSlidingLayout;
 
   private final Context mContext;
 
   DashboardView(@NonNull View parent, Context context) {
     ButterKnife.bind(this, parent);
     mContext = context;
+  }
+
+  @OnClick(R.id.tv_goal) public void onShowGoalPanel() {
+    showPanel();
   }
 
   public void setProgress(int progress) {
@@ -52,6 +61,16 @@ import com.stride.android.util.StringUtil;
   public void setStepsYesterdayText(int stepsYesterday) {
     mStepsYesterday.setText(mContext.getString(R.string.dashboard_steps_yesterday,
         StringUtil.formatNumber(stepsYesterday)));
+  }
+
+  public void showPanel() {
+    mDailyGoalPanel.setVisibility(View.VISIBLE);
+    mSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+  }
+
+  public void hidePanel() {
+    mDailyGoalPanel.setVisibility(View.INVISIBLE);
+    mSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
   }
 
   private void countUpSteps(int steps) {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/generic_margin_smaller"
+    android:layout_marginBottom="@dimen/generic_margin_smaller"
+    >
+
+
+  <TextView
+      android:id="@+id/daily_goal_setter_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textColor="@color/colorPrimary"
+      android:text="Set a goal"
+      android:textSize="@dimen/generic_text_size_slightly_medium"
+      android:paddingTop="@dimen/generic_margin_slightly_smaller"
+      />
+
+  <TextView
+      android:id="@+id/daily_goal_setter_subtitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="NOW"
+      android:textColor="@color/colorPrimaryDark"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginTop="@dimen/generic_margin_slightly_larger"
+      android:layout_marginBottom="@dimen/generic_margin_smaller"
+      >
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/tv_ten_thousand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10000"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        />
+
+    <TextView
+        android:id="@+id/tv_fifteen_thousand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15000"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:id="@+id/tv_twenty_five_thousand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25000"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        />
+
+  </LinearLayout>
+
+</LinearLayout>

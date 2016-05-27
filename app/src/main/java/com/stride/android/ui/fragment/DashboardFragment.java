@@ -18,7 +18,7 @@ import javax.inject.Inject;
  */
 public class DashboardFragment extends BaseFragment {
 
-  @BindView(R.id.dashboard_container) View mParent;
+  @BindView(R.id.sliding_layout) View mParent;
 
   @Inject DashboardPresenter dashboardPresenter;
   @Inject DashboardViewFactory dashboardViewFactory;

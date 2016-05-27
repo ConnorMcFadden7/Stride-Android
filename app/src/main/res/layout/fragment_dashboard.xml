@@ -1,68 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dashboard_container"
-    android:orientation="vertical"
+
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="bottom"
+    app:umanoPanelHeight="0dp"
+    android:background="@android:color/white"
     >
 
-  <FrameLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="@dimen/progress_margin_top"
+  <LinearLayout
+      android:id="@+id/dashboard_container"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
       >
 
-    <ProgressBar
-        android:id="@+id/main_progress"
-        android:layout_width="@dimen/progress_size"
-        android:layout_height="@dimen/progress_size"
-        android:indeterminate="false"
-        android:progressDrawable="@drawable/dashboard_progress_drawable"
-        android:background="@drawable/dashboard_progress_bg"
-        android:rotation="270"
-        style="?android:attr/progressBarStyleHorizontal"
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/progress_margin_top"
+        >
+
+      <ProgressBar
+          android:id="@+id/main_progress"
+          android:layout_width="@dimen/progress_size"
+          android:layout_height="@dimen/progress_size"
+          android:indeterminate="false"
+          android:progressDrawable="@drawable/dashboard_progress_drawable"
+          android:background="@drawable/dashboard_progress_bg"
+          android:rotation="270"
+          style="?android:attr/progressBarStyleHorizontal"
+          />
+
+      <TextView
+          android:id="@+id/tv_current_steps"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:textColor="@color/color_main_text"
+          android:textSize="@dimen/generic_text_size_slightly_medium"
+          />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/generic_margin_medium"
+        android:textColor="@color/color_main_text"
+        android:textSize="@dimen/generic_text_size_slightly_medium"
+        android:drawableLeft="@drawable/ic_edit"
+        android:drawablePadding="@dimen/generic_margin_medium"
+        android:background="@drawable/bg_touchable_transparent"
         />
 
     <TextView
-        android:id="@+id/tv_current_steps"
+        android:id="@+id/tv_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:textColor="@color/color_main_text"
         android:textSize="@dimen/generic_text_size_slightly_medium"
         />
 
-  </FrameLayout>
+    <TextView
+        android:id="@+id/tv_steps_yesterday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
+        android:textColor="@color/color_main_text"
+        android:textSize="@dimen/generic_text_size_slightly_medium"
+        />
 
-  <TextView
-      android:id="@+id/tv_goal"
-      android:layout_width="wrap_content"
+  </LinearLayout>
+
+  <com.stride.android.ui.widget.DailyGoalPanel
+      android:id="@+id/daily_goal_panel"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="@dimen/generic_margin_medium"
-      android:textColor="@color/color_main_text"
-      android:textSize="@dimen/generic_text_size_slightly_medium"
+      android:visibility="gone"
       />
 
-  <TextView
-      android:id="@+id/tv_calories"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
-      android:textColor="@color/color_main_text"
-      android:textSize="@dimen/generic_text_size_slightly_medium"
-      />
-
-  <TextView
-      android:id="@+id/tv_steps_yesterday"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
-      android:textColor="@color/color_main_text"
-      android:textSize="@dimen/generic_text_size_slightly_medium"
-      />
-
-</LinearLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

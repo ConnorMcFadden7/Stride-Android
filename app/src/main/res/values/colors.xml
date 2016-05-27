@@ -8,4 +8,6 @@
   <color name="progress_unfinished">#F7F7F7</color>
 
   <color name="error_text_red">#FF0000</color>
+  <color name="transparent_light_grey">#8FD4D4D4</color>
+
 </resources>
