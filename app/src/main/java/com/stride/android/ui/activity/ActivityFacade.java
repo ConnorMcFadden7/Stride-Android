@@ -1,6 +1,5 @@
 package com.stride.android.ui.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -10,6 +9,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,7 +49,7 @@ public abstract class ActivityFacade {
 
   public abstract void setToolbar(Toolbar toolbar);
 
-  public abstract Activity asActivity();
+  public abstract AppCompatActivity asActivity();
 
   public abstract Resources getResources();
 
@@ -104,7 +104,7 @@ public abstract class ActivityFacade {
       baseActivity.setSupportActionBar(toolbar);
     }
 
-    @Override public Activity asActivity() {
+    @Override public AppCompatActivity asActivity() {
       return baseActivity;
     }
 
@@ -188,7 +188,7 @@ public abstract class ActivityFacade {
       // Empty
     }
 
-    @Override public Activity asActivity() {
+    @Override public AppCompatActivity asActivity() {
       return null;
     }
 

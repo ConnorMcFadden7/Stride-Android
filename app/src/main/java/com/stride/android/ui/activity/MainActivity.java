@@ -2,23 +2,29 @@ package com.stride.android.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import butterknife.BindView;
 import com.stride.android.R;
 import com.stride.android.data.persistence.DatabaseHelper;
 import com.stride.android.ioc.ActivityComponent;
 import com.stride.android.service.SensorListener;
+import com.stride.android.ui.presenter.MainPresenter;
+import com.stride.android.ui.presenter.view.MainViewFactory;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
 
+  @BindView(R.id.container_main) View mParent;
+
   // maybe a better helper method like a Provider to get the steps
   @Inject DatabaseHelper databaseHelper;
+  @Inject MainPresenter mainPresenter;
+  @Inject MainViewFactory mainViewFactory;
+  @Inject ActivityFacade activityFacade;
 
   @Override public boolean isHomeAsUpEnabled() {
     return false;
@@ -30,18 +36,10 @@ public class MainActivity extends BaseActivity {
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null)
-            .show();
-      }
-    });
-
     Log.e("MainActivity", "steps: " + databaseHelper.getTotalSteps());
 
     startService(new Intent(this, SensorListener.class));
+    presentMainScreen();
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,5 +64,9 @@ public class MainActivity extends BaseActivity {
 
   @Override protected void injectActivity(ActivityComponent activityComponent) {
     activityComponent.inject(this);
+  }
+
+  private void presentMainScreen() {
+    mainPresenter.present(mainViewFactory.create(mParent, activityFacade.wrap(this)));
   }
 }

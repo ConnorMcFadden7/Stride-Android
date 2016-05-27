@@ -3,4 +3,25 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
   <dimen name="fab_margin">16dp</dimen>
+
+  <!-- Generic Margins -->
+  <dimen name="generic_margin_tiny">2dp</dimen>
+  <dimen name="generic_margin_smaller">4dp</dimen>
+  <dimen name="generic_margin_slightly_smaller">6dp</dimen>
+  <dimen name="generic_margin_smallish">8dp</dimen>
+  <dimen name="generic_margin_medium">10dp</dimen>
+  <dimen name="generic_margin_mediumer">12dp</dimen>
+  <dimen name="generic_margin_large">16dp</dimen>
+  <dimen name="generic_margin_slight_large">18dp</dimen>
+  <dimen name="generic_margin_slightly_larger">20dp</dimen>
+  <dimen name="generic_margin_larger">26dp</dimen>
+  <dimen name="generic_margin_massive">40dp</dimen>
+
+  <!-- Generic Text Size -->
+  <dimen name="generic_text_size_medium">16sp</dimen>
+  <dimen name="generic_text_size_slightly_medium">18sp</dimen>
+  <dimen name="generic_text_size_mediumer">20sp</dimen>
+  <dimen name="generic_text_size_large">22sp</dimen>
+  <dimen name="generic_text_size_larger">26sp</dimen>
+  <dimen name="generic_text_size_gigantic">36sp</dimen>
 </resources>
