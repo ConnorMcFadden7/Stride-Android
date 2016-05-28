@@ -14,6 +14,7 @@
   <string name="dashboard_daily_goal_option_three">25,000</string>
   <string name="dashboard_daily_goal_custom">Other</string>
   <string name="dashboard_daily_goal_complete">Goal Complete!</string>
+  <string name="dashboard_average_steps">Average steps %s</string>
 
   <!-- Achievements -->
   <string name="achievements_title">Achievements</string>

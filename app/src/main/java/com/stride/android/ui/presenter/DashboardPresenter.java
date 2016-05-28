@@ -1,5 +1,6 @@
 package com.stride.android.ui.presenter;
 
+import android.util.Log;
 import com.stride.android.data.local.PreferencesHelper;
 import com.stride.android.repository.DashboardRespository;
 import com.stride.android.ui.presenter.model.DashboardModel;
@@ -39,6 +40,7 @@ public class DashboardPresenter {
     view.setProgress(model.getTodaysSteps());
     view.setCaloriesText(mCaloriesHelper.getCalories(10));
     view.setStepsYesterdayText(model.getYesterdaysSteps());
+    view.setAverageSteps(model.getTotalAverage());
 
     if (model.getTodaysSteps() >= userGoal) {
       view.setGoalComplete();

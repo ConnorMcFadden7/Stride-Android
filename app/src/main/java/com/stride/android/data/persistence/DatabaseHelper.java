@@ -75,6 +75,16 @@ import javax.inject.Singleton;
     }
   }
 
+  public int getAverageSteps() {
+    Cursor cursor =
+        getReadableDatabase().query("progress", new String[] { "AVG(steps)" }, "date > 0", null,
+            null, null, null);
+    cursor.moveToFirst();
+    int average = cursor.getInt(0);
+    cursor.close();
+    return average;
+  }
+
   //// TODO: 23/05/16 run these as constants
   public void updateSteps(final String date, int steps) {
     getWritableDatabase().execSQL("UPDATE progress SET steps = " + steps + " WHERE date = " + date);

@@ -10,11 +10,13 @@ public class DashboardModel {
   public int todaysSteps;
   public int yesterdaysSteps;
   public int caloriesBurnt;
+  public int totalAverage;
 
-  public DashboardModel(int todaysSteps, int yesterdaysSteps, int caloriesBurnt) {
+  public DashboardModel(int todaysSteps, int yesterdaysSteps, int caloriesBurnt, int totalAverage) {
     this.todaysSteps = todaysSteps;
     this.yesterdaysSteps = yesterdaysSteps;
     this.caloriesBurnt = caloriesBurnt;
+    this.totalAverage = totalAverage;
   }
 
   public int getTodaysSteps() {
@@ -29,14 +31,19 @@ public class DashboardModel {
     return caloriesBurnt;
   }
 
+  public int getTotalAverage() {
+    return totalAverage;
+  }
+
   public static class DashboardMapper {
 
     @Inject DashboardMapper() {
       //
     }
 
-    public DashboardModel map(int todaysSteps, int yesterdaysSteps, int caloriesBurnt) {
-      return new DashboardModel(todaysSteps, yesterdaysSteps, caloriesBurnt);
+    public DashboardModel map(int todaysSteps, int yesterdaysSteps, int caloriesBurnt,
+        int totalAverage) {
+      return new DashboardModel(todaysSteps, yesterdaysSteps, caloriesBurnt, totalAverage);
     }
   }
 }

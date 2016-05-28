@@ -3,6 +3,7 @@ package com.stride.android.ui.presenter.view;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.stride.android.util.SpannableUtil;
   @BindView(R.id.tv_goal) TextView mTextGoal;
   @BindView(R.id.tv_calories) TextView mTextCalories;
   @BindView(R.id.tv_steps_yesterday) TextView mStepsYesterday;
+  @BindView(R.id.tv_steps_average) TextView mStepsAverage;
   @BindView(R.id.daily_goal_panel) DailyGoalPanel mDailyGoalPanel;
   @BindView(R.id.sliding_layout) SlidingUpPanelLayout mSlidingLayout;
 
@@ -50,8 +52,7 @@ import com.stride.android.util.SpannableUtil;
   public void setGoalText(int goal) {
     mDailyGoalPanel.updateUi(goal);
     mTodayProgress.setMax(goal);
-    mTextGoal.setText(
-        SpannableUtil.formatTextAndBlueValue(mContext, R.string.dashboard_goal, goal));
+    animateCounter(goal, mTextGoal, 1000, R.string.dashboard_goal);
   }
 
   public void setGoalToggleListener(DailyGoalPanel.ToggleListener toggleListener) {
@@ -64,9 +65,7 @@ import com.stride.android.util.SpannableUtil;
   }
 
   public void setStepsYesterdayText(int stepsYesterday) {
-    mStepsYesterday.setText(
-        SpannableUtil.formatTextAndBlueValue(mContext, R.string.dashboard_steps_yesterday,
-            stepsYesterday));
+    animateCounter(stepsYesterday, mStepsYesterday, 1000, R.string.dashboard_steps_yesterday);
   }
 
   public void showPanel() {
@@ -93,6 +92,26 @@ import com.stride.android.util.SpannableUtil;
       public void onAnimationUpdate(ValueAnimator animation) {
         mCurrentSteps.setText(mContext.getResources()
             .getString(R.string.dashboard_steps_today, "" + (int) animation.getAnimatedValue()));
+      }
+    });
+    animator.start();
+
+    animateCounter(steps, mCurrentSteps, 1200, R.string.dashboard_steps_today);
+  }
+
+  public void setAverageSteps(int steps) {
+    animateCounter(steps, mStepsAverage, 1000, R.string.dashboard_average_steps);
+  }
+
+  private void animateCounter(int count, final TextView textView, int duration,
+      @StringRes final int stringId) {
+    ValueAnimator animator = new ValueAnimator();
+    animator.setObjectValues(0, count);
+    animator.setDuration(duration);
+    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+      public void onAnimationUpdate(ValueAnimator animation) {
+        textView.setText(SpannableUtil.formatTextAndBlueValue(mContext, stringId,
+            (int) animation.getAnimatedValue()));
       }
     });
     animator.start();

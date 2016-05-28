@@ -30,7 +30,7 @@ public class AchievementGenerator {
         R.drawable.ic_achievement_walk2_complete_big,
         R.drawable.ic_achievement_walk2_incomplete_big),
 
-    BURN_ONE(R.string.achievements_burn1_title, R.string.achievements_burn1_description,
+    /*BURN_ONE(R.string.achievements_burn1_title, R.string.achievements_burn1_description,
         R.drawable.ic_achievement_burn1_complete, R.drawable.ic_achievement_burn1_incomplete,
         R.drawable.ic_achievement_burn1_complete_big,
         R.drawable.ic_achievement_burn1_incomplete_big),
@@ -38,7 +38,7 @@ public class AchievementGenerator {
     BURN_TWO(R.string.achievements_burn2_title, R.string.achievements_burn2_description,
         R.drawable.ic_achievement_burn2_complete, R.drawable.ic_achievement_burn2_incomplete,
         R.drawable.ic_achievement_burn2_complete_big,
-        R.drawable.ic_achievement_burn2_incomplete_big),
+        R.drawable.ic_achievement_burn2_incomplete_big),*/
 
     REMOVE_ADS(R.string.achievements_ads_title, R.string.achievements_ads_description,
         R.drawable.ic_achievement_ads_complete, R.drawable.ic_achievement_ads_incomplete,
