@@ -30,6 +30,10 @@
   <dimen name="progress_size">260dp</dimen>
   <dimen name="progress_margin_top">40dp</dimen>
 
+  <!-- Widget -->
+  <dimen name="widget_min_height">40dp</dimen>
+  <dimen name="widget_min_width">288dp</dimen>
+
   <!-- Other dimens -->
   <dimen name="achievements_header_bar_height">60dp</dimen>
   <dimen name="shadow_height">4dip</dimen>

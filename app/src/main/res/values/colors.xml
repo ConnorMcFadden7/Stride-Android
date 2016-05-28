@@ -15,5 +15,6 @@
   <color name="achievement_circular_progress_ninety_five_pct_transparent_white">#F2FFFFFF</color>
   <color name="achievement_circular_progress_eighty_pct_transparent_white">#CCFFFFFF</color>
   <color name="payment_bg_color">#4C000000</color>
+  <color name="widget_background_color">#33FFFFFF</color>
 
 </resources>

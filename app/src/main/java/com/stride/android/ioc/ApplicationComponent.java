@@ -5,6 +5,7 @@ import com.stride.android.ioc.module.ActivityModule;
 import com.stride.android.ioc.module.ApplicationModule;
 import com.stride.android.service.SensorListener;
 import com.stride.android.service.receiver.ChargingReceiver;
+import com.stride.android.service.receiver.WidgetBroadcastReceiver;
 import dagger.Component;
 import javax.inject.Singleton;
 
@@ -22,4 +23,6 @@ import javax.inject.Singleton;
   void inject(SensorListener sensorListener);
 
   void inject(ChargingReceiver chargingReceiver);
+
+  void inject(WidgetBroadcastReceiver widgetBroadcastReceiver);
 }

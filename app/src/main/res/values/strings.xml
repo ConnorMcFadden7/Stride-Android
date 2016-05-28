@@ -42,4 +42,7 @@
   <string name="banner_ad_unit_id">ca-app-pub-4721620685923716/6035273981</string>
   <string name="interstitial_ad_unit_id">ca-app-pub-4721620685923716/7512007187</string>
 
+  <!-- Widget -->
+  <string name="widget_current_steps">Current steps %s</string>
+
 </resources>
