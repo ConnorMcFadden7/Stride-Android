@@ -48,4 +48,17 @@
     <item name="android:clickable">true</item>
   </style>
 
+  <style name="AppTheme.TranslucentToolbar"
+      parent="AppTheme">
+    <item name="android:windowActionBarOverlay">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="windowActionBarOverlay">true</item>
+  </style>
+
+  <style name="AppTheme.TransparentActivity"
+      parent="AppTheme.TranslucentToolbar">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+  </style>
+
 </resources>

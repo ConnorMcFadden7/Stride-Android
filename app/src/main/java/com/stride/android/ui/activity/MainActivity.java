@@ -3,7 +3,6 @@ package com.stride.android.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,10 +13,8 @@ import com.stride.android.ioc.ActivityComponent;
 import com.stride.android.service.SensorListener;
 import com.stride.android.ui.presenter.MainPresenter;
 import com.stride.android.ui.presenter.view.MainViewFactory;
-import com.stride.android.util.TimeUtils;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import com.stride.android.util.payment.PaymentSystem;
+import com.stride.android.util.payment.Sku;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
@@ -29,6 +26,8 @@ public class MainActivity extends BaseActivity {
   @Inject MainPresenter mainPresenter;
   @Inject MainViewFactory mainViewFactory;
   @Inject ActivityFacade activityFacade;
+  @Inject PaymentSystem paymentSystem;
+
 
   @Override public boolean isHomeAsUpEnabled() {
     return false;
@@ -39,47 +38,30 @@ public class MainActivity extends BaseActivity {
     setContentView(R.layout.activity_main);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
-
-
-    Calendar yesterday = Calendar.getInstance();
-    yesterday.setTimeInMillis(1464460377503L);
-    yesterday.add(Calendar.DAY_OF_YEAR, -1);
-
-
-
-   // Log.e("MainActivity", "currentDate: " + date);
-
-
-    //    Log.e("MainActivity", "isToday: " + TimeUtils.isToday(1464460377503L));
-
-
-
     startService(new Intent(this, SensorListener.class));
     presentMainScreen();
-
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String date = sdf.format(new Date());
-
-    Log.e("MainActivity", "today: " + TimeUtils.getToday());
+    paymentSystem.checkPurchaseStatus(new PaymentSystem.PurchaseHistory() {
+      @Override public void onResponse() {
+        //hide ads
+      }
+    });
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.menu_main, menu);
     return true;
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
+    switch (item.getItemId()) {
+      case R.id.action_upgrade_to_pro:
+        paymentSystem.startPayment(new Sku.Key(Sku.Period.ONE_OFF));
+        break;
+      case R.id.action_settings:
+        //
+        break;
+      default:
+        return super.onOptionsItemSelected(item);
     }
 
     return super.onOptionsItemSelected(item);

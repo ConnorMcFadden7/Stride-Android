@@ -19,6 +19,7 @@ import javax.inject.Singleton;
   public static final String PREF_KEY_USER_OBJECT = "key_user";
   public static final String PREF_KEY_PAUSED_STATE = "key_paused_state";
   public static final String PREF_KEY_GOAL = "key_goal";
+  public static final String PREF_KEY_HAS_UPGRADED = "key_has_upgraded";
 
   private final Gson mGson = new Gson();
 
@@ -74,5 +75,13 @@ import javax.inject.Singleton;
 
   public int getUserGoal() {
     return mPrefs.getInt(PREF_KEY_GOAL, -1);
+  }
+
+  public void setHasUpgraded(boolean hasUpgraded) {
+    mPrefs.edit().putBoolean(PREF_KEY_HAS_UPGRADED, hasUpgraded).apply();
+  }
+
+  public boolean hasUpgraded() {
+    return mPrefs.getBoolean(PREF_KEY_HAS_UPGRADED, false);
   }
 }
