@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import butterknife.BindView;
@@ -24,11 +25,17 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
       @Override public void onCurrentGoalSelected() {
         // Empty
       }
+
+      @Override public void onCustomGoal() {
+
+      }
     };
 
     void onSetGoal(int goal);
 
     void onCurrentGoalSelected();
+
+    void onCustomGoal();
   }
 
   enum GoalOption {
@@ -49,6 +56,8 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
   @BindView(R.id.tv_ten_thousand) ImageView mFirstGoal;
   @BindView(R.id.tv_fifteen_thousand) ImageView mSecondGoal;
   @BindView(R.id.tv_twenty_five_thousand) ImageView mThirdGoal;
+  @BindView(R.id.ed_other_goal) EditText mCustomGoal;
+  @BindView(R.id.iv_set_custom_goal) ImageView mSetCustomGoal;
 
   private int mGoal = -1;
   private ToggleListener mToggleListener = ToggleListener.NULL;
@@ -94,6 +103,7 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
     mFirstGoal.setOnClickListener(this);
     mSecondGoal.setOnClickListener(this);
     mThirdGoal.setOnClickListener(this);
+    mSetCustomGoal.setOnClickListener(this);
   }
 
   private void handleToggle(View view, int goal) {
@@ -126,6 +136,9 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
       case R.id.tv_twenty_five_thousand:
         onClickedOption(GoalOption.THREE.getPoints(), mThirdGoal, mFirstGoal, mSecondGoal);
         break;
+      case R.id.iv_set_custom_goal:
+        saveCustomGoal();
+        break;
     }
   }
 
@@ -138,6 +151,16 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
       handleToggle(selectedView, mGoal);
     } else {
       mToggleListener.onCurrentGoalSelected();
+    }
+  }
+
+  private void saveCustomGoal() {
+    if (!mCustomGoal.getText().toString().isEmpty()) {
+      mFirstGoal.setSelected(false);
+      mSecondGoal.setSelected(false);
+      mThirdGoal.setSelected(false);
+      mToggleListener.onSetGoal(Integer.parseInt(mCustomGoal.getText().toString()));
+      mToggleListener.onCustomGoal();
     }
   }
 

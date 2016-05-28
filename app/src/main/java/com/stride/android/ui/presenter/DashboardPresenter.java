@@ -53,6 +53,12 @@ public class DashboardPresenter {
       @Override public void onCurrentGoalSelected() {
         dashboardView.hidePanel();
       }
+
+      @Override public void onCustomGoal() {
+        if (!AchievementGenerator.Achievements.CUSTOM_GOAL.isReached()) {
+          AchievementGenerator.Achievements.CUSTOM_GOAL.setReached();
+        }
+      }
     });
   }
 

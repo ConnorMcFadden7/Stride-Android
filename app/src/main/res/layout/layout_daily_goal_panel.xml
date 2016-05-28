@@ -23,7 +23,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
-      android:layout_marginTop="@dimen/generic_margin_slightly_larger"
+      android:layout_marginTop="@dimen/generic_margin_slighter_large"
       android:layout_marginBottom="@dimen/generic_margin_medium"
       >
 
@@ -135,5 +135,36 @@
         />
 
   </LinearLayout>
+
+  <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/generic_margin_slighter_large"
+      >
+
+    <EditText
+        android:id="@+id/ed_other_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/generic_margin_slighter_large"
+        android:layout_toLeftOf="@+id/iv_set_custom_goal"
+        android:hint="@string/dashboard_daily_goal_custom"
+        android:textColorHint="@color/color_main_text"
+        android:textColor="@color/color_main_text"
+        android:backgroundTint="@color/color_main_text"
+        />
+
+    <ImageView
+        android:id="@+id/iv_set_custom_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_tick"
+        android:padding="@dimen/generic_margin_slightly_smaller"
+        android:background="@drawable/bg_touchable_transparent"
+        />
+
+  </RelativeLayout>
 
 </LinearLayout>

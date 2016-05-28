@@ -12,6 +12,7 @@
   <string name="dashboard_daily_goal_option_one">10,000</string>
   <string name="dashboard_daily_goal_option_two">15,000</string>
   <string name="dashboard_daily_goal_option_three">25,000</string>
+  <string name="dashboard_daily_goal_custom">Other</string>
 
   <!-- Achievements -->
   <string name="achievements_title">Achievements</string>
