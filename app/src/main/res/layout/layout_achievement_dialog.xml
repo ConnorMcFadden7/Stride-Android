@@ -50,7 +50,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
-          android:layout_marginBottom="@dimen/generic_margin_medium"
+          android:layout_marginBottom="@dimen/generic_margin_slighter_large"
           android:layout_gravity="center"
           android:textColor="@color/color_main_text_eighty_pct"
           android:text="derp"

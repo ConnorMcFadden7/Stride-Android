@@ -13,6 +13,7 @@
   <dimen name="generic_margin_mediumer">12dp</dimen>
   <dimen name="generic_margin_large">16dp</dimen>
   <dimen name="generic_margin_slight_large">18dp</dimen>
+  <dimen name="generic_margin_slighter_large">20dp</dimen>
   <dimen name="generic_margin_slightly_larger">60dp</dimen>
   <dimen name="generic_margin_larger">26dp</dimen>
   <dimen name="generic_margin_massive">40dp</dimen>
