@@ -42,24 +42,30 @@ import javax.inject.Singleton;
   }
 
   public void insertDay(String date, int steps) {
-    Log.e("DatabaseHelper", "insertDay::date: " + date + " steps: " + steps);
     getWritableDatabase().beginTransaction();
     try {
       Cursor c = getReadableDatabase().query("progress", new String[] { "date" }, "date = ?",
           new String[] { String.valueOf(date) }, null, null, null);
-      if (c.getCount() == 0 && steps >= 0) {
+      c.moveToFirst();
+      if (steps >= 0) {
         ContentValues values = new ContentValues();
-        values.put("date", date);
-        values.put("steps", steps);
-        getWritableDatabase().insert("progress", null, values);
 
-        Log.e("DatabaseHelper", "inserting::date: " + date);
+        String latestDate = c.getString(0);
 
-        // add 'steps' to yesterdays count
-        Calendar yesterday = Calendar.getInstance();
-      //  yesterday.setTimeInMillis(date);
-        yesterday.add(Calendar.DAY_OF_YEAR, -1);
-        updateSteps(yesterday.getTimeInMillis(), steps);
+        if (latestDate.equals(date)) {
+          values.put("steps", steps);
+          getWritableDatabase().update("progress", values, "date=?", new String[] { date });
+        } else {
+          values.put("date", date);
+          values.put("steps", steps);
+          getWritableDatabase().insert("progress", null, values);
+
+          // add 'steps' to yesterdays count
+          Calendar yesterday = Calendar.getInstance();
+          //  yesterday.setTimeInMillis(date);
+          yesterday.add(Calendar.DAY_OF_YEAR, -1);
+        }
+        // updateSteps(yesterday.getTimeInMillis(), steps);
       }
       c.close();
       getWritableDatabase().setTransactionSuccessful();
@@ -69,9 +75,8 @@ import javax.inject.Singleton;
   }
 
   //// TODO: 23/05/16 run these as constants
-  public void updateSteps(final long date, int steps) {
-    getWritableDatabase().execSQL(
-        "UPDATE " + "progress" + " SET steps = steps + " + steps + " WHERE date = " + date);
+  public void updateSteps(final String date, int steps) {
+    getWritableDatabase().execSQL("UPDATE progress SET steps = " + steps + " WHERE date = " + date);
   }
 
   public int getDateGivenSteps(final long date) {
@@ -117,8 +122,11 @@ import javax.inject.Singleton;
         new String[] { date }, null, null, null);
     c.moveToFirst();
     int re;
-    if (c.getCount() == 0) re = Integer.MIN_VALUE;
-    else re = c.getInt(0);
+    if (c.getCount() == 0) {
+      re = Integer.MIN_VALUE;
+    } else {
+      re = c.getInt(0);
+    }
     c.close();
     return re;
   }
@@ -155,5 +163,4 @@ import javax.inject.Singleton;
     return re;
   }
        */
-
 }

@@ -42,10 +42,10 @@ import com.stride.android.util.StringUtil;
 
   public void setProgress(int progress) {
     // maybe only onCreate? rather than doing all the time
-    ProgressAnimation anim = new ProgressAnimation(mTodayProgress, 0, 4235);
+    ProgressAnimation anim = new ProgressAnimation(mTodayProgress, 0, progress);
     anim.setDuration(1000);
     mTodayProgress.startAnimation(anim);
-    countUpSteps(4235);
+    countUpSteps(progress);
   }
 
   public void setGoalText(int goal) {
