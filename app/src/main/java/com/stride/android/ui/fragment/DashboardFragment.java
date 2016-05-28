@@ -26,7 +26,6 @@ public class DashboardFragment extends BaseFragment {
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     setHasOptionsMenu(true);
-    presentDashboard();
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +33,13 @@ public class DashboardFragment extends BaseFragment {
     View fragmentView = inflater.inflate(R.layout.fragment_dashboard, container, false);
     ButterKnife.bind(this, fragmentView);
     return fragmentView;
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    if (hasActivity()) {
+      presentDashboard();
+    }
   }
 
   @Override protected void injectFragment(FragmentComponent fragmentComponent) {
