@@ -1,11 +1,11 @@
 package com.stride.android;
 
 import android.app.Application;
-import com.facebook.stetho.Stetho;
 import com.google.common.annotations.VisibleForTesting;
 import com.squareup.otto.Bus;
 import com.stride.android.ioc.ApplicationComponent;
 import com.stride.android.ioc.DaggerApplicationComponent;
+import com.stride.android.ioc.ServiceLocator;
 import com.stride.android.ioc.module.ApplicationModule;
 import com.stride.android.util.StethoUtil;
 import javax.inject.Inject;
@@ -13,6 +13,7 @@ import javax.inject.Inject;
 public class StrideApplication extends Application {
 
   private static StrideApplication sStrideApplication;
+  @Inject ServiceLocator mServiceLocator;
   @Inject Bus mBus;
   @Inject StethoUtil mStethoUtil;
   private ApplicationComponent mComponent;

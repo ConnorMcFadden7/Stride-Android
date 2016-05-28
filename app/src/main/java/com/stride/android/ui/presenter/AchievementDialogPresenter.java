@@ -21,10 +21,11 @@ public class AchievementDialogPresenter {
   public void present(AchievementDialogView view, Achievement achievement) {
     this.achievementDialogView = view;
     view.setAchievementIcon(
-        achievement.progress == 0 ? achievement.empty_icon_big : achievement.icon_big);
+        achievement.is_achieved ? achievement.icon_big : achievement.empty_icon_big);
     view.setTitle(achievement.title);
     view.setDescription(achievement.description);
-    view.setDateAchievedText(achievement.is_achieved ? achievement.achieved_date
+    view.setDateAchievedText(achievement.is_achieved ? activityFacade.getResources()
+        .getString(R.string.achievements_date_achieved, achievement.achieved_date)
         : activityFacade.getResources().getString(R.string.achievements_not_achieved));
   }
 }

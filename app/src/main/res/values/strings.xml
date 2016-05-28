@@ -32,5 +32,6 @@
   <string name="achievements_custom_goal_title">Be creative</string>
   <string name="achievements_custom_goal_description">Come up with your own goal and set it</string>
   <string name="achievements_not_achieved">Not yet achieved</string>
+  <string name="achievements_date_achieved">Achieved: %s</string>
 
 </resources>

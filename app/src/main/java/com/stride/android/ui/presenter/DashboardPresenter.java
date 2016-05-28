@@ -5,6 +5,7 @@ import com.stride.android.repository.DashboardRespository;
 import com.stride.android.ui.presenter.model.DashboardModel;
 import com.stride.android.ui.presenter.view.DashboardView;
 import com.stride.android.ui.widget.DailyGoalPanel;
+import com.stride.android.util.AchievementGenerator;
 import com.stride.android.util.CaloriesHelper;
 import javax.inject.Inject;
 
@@ -43,6 +44,9 @@ public class DashboardPresenter {
   private void initToggleListener() {
     dashboardView.setGoalToggleListener(new DailyGoalPanel.ToggleListener() {
       @Override public void onSetGoal(int goal) {
+        if (!AchievementGenerator.Achievements.SET_GOAL.isReached()) {
+          AchievementGenerator.Achievements.SET_GOAL.setReached();
+        }
         saveAndSetGoal(goal);
       }
 

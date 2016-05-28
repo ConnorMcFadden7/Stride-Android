@@ -68,7 +68,7 @@ public class AchievementAdapter extends BaseAdapter {
   }
 
   private void bindHolder(final ViewHolder holder, final Achievement achievement) {
-    if (achievement.progress == 0) {
+    if (!achievement.is_achieved) {
       holder.achievementIconView.setImage(achievement.empty_icon);
     } else {
       holder.achievementIconView.setAchieved();

@@ -1,10 +1,15 @@
 package com.stride.android.util;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import com.stride.android.R;
 import com.stride.android.data.model.Achievement;
+import com.stride.android.ioc.ServiceLocator;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -57,12 +62,18 @@ public class AchievementGenerator {
         R.drawable.ic_achievement_custom_goal_complete_big,
         R.drawable.ic_achievement_custom_goal_incomplete_big);
 
+    static {
+      Helper.getInstance().load();
+    }
+
     private final @StringRes int title;
     private final @StringRes int description;
     private final @DrawableRes int achievedIcon;
     private final @DrawableRes int achievedIconBig;
     private final @DrawableRes int unachievedIcon;
     private final @DrawableRes int unachievedIconBig;
+    private boolean isReached;
+    private String dateReached;
 
     Achievements(@StringRes int title, @StringRes int description, @DrawableRes int achievedIcon,
         @DrawableRes int unachievedIcon, @DrawableRes int achievedIconBig,
@@ -98,6 +109,69 @@ public class AchievementGenerator {
     public @DrawableRes int getUnachievedIconBig() {
       return unachievedIconBig;
     }
+
+    public boolean isReached() {
+      return isReached;
+    }
+
+    public String getDateReached() {
+      return dateReached;
+    }
+
+    public void setReached() {
+      this.isReached = true;
+      Helper.getInstance().save(this);
+    }
+
+    public static class Helper {
+
+      private SharedPreferences mSharedPreferences;
+
+      Helper() {
+        //
+      }
+
+      static Helper getInstance() {
+        return Singleton.INSTANCE;
+      }
+
+      Helper init(Context context) {
+        mSharedPreferences =
+            context.getSharedPreferences("achievement_prefs", Context.MODE_PRIVATE);
+        load();
+        return this;
+      }
+
+      void load() {
+        for (final Achievements achievements : Achievements.values()) {
+          achievements.isReached = mSharedPreferences.getBoolean(achievements.name(), false);
+          achievements.dateReached =
+              mSharedPreferences.getString(achievements.name() + "_date", "");
+        }
+      }
+
+      void save(Achievements achievements) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(achievements.name(), achievements.isReached);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
+        editor.putString(achievements.name() + "_date", date);
+        editor.apply();
+      }
+
+      void clear() {
+        mSharedPreferences.edit().clear().apply();
+        load();
+      }
+
+      static class Singleton {
+        static final Helper INSTANCE = new Helper();
+
+        static {
+          INSTANCE.init(ServiceLocator.get().getContext());
+        }
+      }
+    }
   }
 
   @Inject AchievementGenerator() {
@@ -115,6 +189,8 @@ public class AchievementGenerator {
       achievement.icon_big = Achievements.values()[i].getAchievedIconBig();
       achievement.empty_icon = Achievements.values()[i].getUnachievedIcon();
       achievement.empty_icon_big = Achievements.values()[i].getUnachievedIconBig();
+      achievement.is_achieved = Achievements.values()[i].isReached();
+      achievement.achieved_date = Achievements.values()[i].getDateReached();
       achievements.add(achievement);
     }
     return achievements;
