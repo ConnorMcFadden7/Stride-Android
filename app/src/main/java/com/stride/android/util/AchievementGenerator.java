@@ -174,6 +174,9 @@ public class AchievementGenerator {
     }
   }
 
+  public static final int WALK_ONE_STEP_COUNT = 5000;
+  public static final int WALK_TWO_STEP_COUNT = 15000;
+
   @Inject AchievementGenerator() {
     //
   }
@@ -194,5 +197,21 @@ public class AchievementGenerator {
       achievements.add(achievement);
     }
     return achievements;
+  }
+
+  public void setWalkOneReached(int steps) {
+    if (steps >= WALK_ONE_STEP_COUNT) {
+      if (!Achievements.WALK_ONE.isReached()) {
+        Achievements.WALK_ONE.setReached();
+      }
+    }
+  }
+
+  public void setWalkTwoReached(int steps) {
+    if (steps >= WALK_TWO_STEP_COUNT) {
+      if (!Achievements.WALK_TWO.isReached()) {
+        Achievements.WALK_TWO.setReached();
+      }
+    }
   }
 }

@@ -27,6 +27,7 @@ public class SensorListener extends Service implements SensorEventListener {
 
   @Inject DatabaseHelper databaseHelper;
   @Inject PreferencesHelper preferencesHelper;
+  @Inject AchievementGenerator achievementGenerator;
 
   private final static int NOTIFICATION_ID = 1;
 
@@ -60,6 +61,9 @@ public class SensorListener extends Service implements SensorEventListener {
           AchievementGenerator.Achievements.REACH_GOAL.setReached();
         }
       }
+
+      achievementGenerator.setWalkOneReached(steps);
+      achievementGenerator.setWalkTwoReached(steps);
 
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
       String date = sdf.format(new Date());

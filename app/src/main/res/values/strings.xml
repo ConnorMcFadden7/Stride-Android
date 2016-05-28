@@ -18,9 +18,9 @@
   <string name="achievements_title">Achievements</string>
   <string name="achievements_count">%1$s/%2$s</string>
   <string name="achievements_walk1_title">Beginner Walker</string>
-  <string name="achievements_walk1_description">Walk 5000 steps in one day!</string>
+  <string name="achievements_walk1_description">Walk 5000 steps!</string>
   <string name="achievements_walk2_title">Intermediate Walker</string>
-  <string name="achievements_walk2_description">Walk 15000 steps in one day!</string>
+  <string name="achievements_walk2_description">Walk 15000 steps!</string>
   <string name="achievements_burn1_title">Beginner Burner</string>
   <string name="achievements_burn1_description">Burn 500 calories in one day!</string>
   <string name="achievements_burn2_title">Intermediate Burner</string>
