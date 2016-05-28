@@ -38,7 +38,7 @@
 
   <!-- Payment -->
   <string name="main_screen_one_off_payment">Finalising your payment…</string>
-  <string name="banner_ad_unit_id">ca-app-pub-5422923960639111/3616924587</string>
-  <string name="interstitial_ad_unit_id">ca-app-pub-5422923960639111/8873969789</string>
+  <string name="banner_ad_unit_id">ca-app-pub-4721620685923716/6035273981</string>
+  <string name="interstitial_ad_unit_id">ca-app-pub-4721620685923716/7512007187</string>
 
 </resources>
