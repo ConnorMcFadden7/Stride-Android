@@ -20,10 +20,14 @@ public class DashboardRespository {
   }
 
   public DashboardModel getDashboardModel() {
-    return dashboardMapper.map(getTodaysSteps(), 3214, 332);
+    return dashboardMapper.map(getTodaysSteps(), getYesterdaysSteps(), 332);
   }
 
   public int getTodaysSteps() {
     return databaseHelper.getSteps(TimeUtils.getToday());
+  }
+
+  public int getYesterdaysSteps() {
+    return databaseHelper.getSteps(TimeUtils.getYesterday());
   }
 }

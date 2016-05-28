@@ -49,9 +49,10 @@ import javax.inject.Singleton;
       c.moveToFirst();
       if (steps >= 0) {
         ContentValues values = new ContentValues();
-
-        String latestDate = c.getString(0);
-
+        String latestDate = "";
+        if (c.getCount() > 0) {
+          latestDate = c.getString(0);
+        }
         if (latestDate.equals(date)) {
           values.put("steps", steps);
           getWritableDatabase().update("progress", values, "date=?", new String[] { date });

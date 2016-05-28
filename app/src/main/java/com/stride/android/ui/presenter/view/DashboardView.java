@@ -14,7 +14,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import com.stride.android.R;
 import com.stride.android.ui.animation.ProgressAnimation;
 import com.stride.android.ui.widget.DailyGoalPanel;
-import com.stride.android.util.StringUtil;
+import com.stride.android.util.SpannableUtil;
 
 /**
  * Created by connormcfadden on 27/05/16.
@@ -45,13 +45,13 @@ import com.stride.android.util.StringUtil;
     ProgressAnimation anim = new ProgressAnimation(mTodayProgress, 0, progress);
     anim.setDuration(1000);
     mTodayProgress.startAnimation(anim);
-    countUpSteps(progress);
   }
 
   public void setGoalText(int goal) {
     mDailyGoalPanel.updateUi(goal);
     mTodayProgress.setMax(goal);
-    mTextGoal.setText(mContext.getString(R.string.dashboard_goal, StringUtil.formatNumber(goal)));
+    mTextGoal.setText(
+        SpannableUtil.formatTextAndBlueValue(mContext, R.string.dashboard_goal, goal));
   }
 
   public void setGoalToggleListener(DailyGoalPanel.ToggleListener toggleListener) {
@@ -60,12 +60,13 @@ import com.stride.android.util.StringUtil;
 
   public void setCaloriesText(int calories) {
     mTextCalories.setText(
-        mContext.getString(R.string.dashboard_calories, StringUtil.formatNumber(calories)));
+        SpannableUtil.formatTextAndBlueValue(mContext, R.string.dashboard_calories, calories));
   }
 
   public void setStepsYesterdayText(int stepsYesterday) {
-    mStepsYesterday.setText(mContext.getString(R.string.dashboard_steps_yesterday,
-        StringUtil.formatNumber(stepsYesterday)));
+    mStepsYesterday.setText(
+        SpannableUtil.formatTextAndBlueValue(mContext, R.string.dashboard_steps_yesterday,
+            stepsYesterday));
   }
 
   public void showPanel() {
@@ -78,7 +79,13 @@ import com.stride.android.util.StringUtil;
     mSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
   }
 
-  private void countUpSteps(int steps) {
+  public void setGoalComplete() {
+    mCurrentSteps.setText(
+        mContext.getResources().getString(R.string.dashboard_daily_goal_complete));
+    mCurrentSteps.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+  }
+
+  public void setStepsToday(int steps) {
     ValueAnimator animator = new ValueAnimator();
     animator.setObjectValues(0, steps);
     animator.setDuration(1200);

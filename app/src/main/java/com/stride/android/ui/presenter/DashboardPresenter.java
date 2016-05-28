@@ -38,7 +38,13 @@ public class DashboardPresenter {
     initToggleListener();
     view.setProgress(model.getTodaysSteps());
     view.setCaloriesText(mCaloriesHelper.getCalories(10));
-    view.setStepsYesterdayText(3585);
+    view.setStepsYesterdayText(model.getYesterdaysSteps());
+
+    if (model.getTodaysSteps() >= userGoal) {
+      view.setGoalComplete();
+    } else {
+      view.setStepsToday(model.getTodaysSteps());
+    }
   }
 
   private void initToggleListener() {
