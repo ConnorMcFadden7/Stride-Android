@@ -8,6 +8,7 @@ import com.nhaarman.listviewanimations.appearance.simple.ScaleInAnimationAdapter
 import com.stride.android.R;
 import com.stride.android.data.model.Achievement;
 import com.stride.android.ui.activity.ActivityFacade;
+import com.stride.android.ui.widget.AchievementDialogFragment;
 import com.stride.android.ui.widget.AchievementIconView;
 import java.util.List;
 
@@ -67,22 +68,22 @@ public class AchievementAdapter extends BaseAdapter {
   }
 
   private void bindHolder(final ViewHolder holder, final Achievement achievement) {
-    // If the icon of the badge is 0 it's not achieved
     if (achievement.progress == 0) {
       holder.achievementIconView.setImage(achievement.empty_icon);
     } else {
       holder.achievementIconView.setAchieved();
       holder.achievementIconView.setProgress(achievement.progress);
       holder.achievementIconView.setImage(achievement.icon);
-      holder.achievementIconView.getBadge().setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View v) {
-          if (mContext.canCommitFragmentTransaction()) {
-            //BadgeDialogFragment.newInstance(badge, mTrackingLabel, false)
-            //    .show(mContext.getFragmentManager(), BadgeDialogFragment.BADGE_DIALOG);
-          }
-        }
-      });
     }
+
+    holder.achievementIconView.getBadge().setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        if (mContext.canCommitFragmentTransaction()) {
+          AchievementDialogFragment.newInstance(achievement)
+              .show(mContext.getFragmentManager(), AchievementDialogFragment.ACHIEVEMENT_DIALOG);
+        }
+      }
+    });
   }
 
   static class ViewHolder {

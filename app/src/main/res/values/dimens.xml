@@ -33,5 +33,6 @@
   <dimen name="achievements_header_bar_height">60dp</dimen>
   <dimen name="shadow_height">4dip</dimen>
   <dimen name="achievements_image_size">60dp</dimen>
+  <dimen name="achievements_dialog_margin_top">50dp</dimen>
 
 </resources>

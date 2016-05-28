@@ -15,6 +15,7 @@ public class Achievement implements Parcelable {
   public String achieved_date = "";
   public int description = 0;
   public int progress = 0;
+  public boolean is_achieved = false;
 
   public Achievement() {
 
@@ -28,6 +29,7 @@ public class Achievement implements Parcelable {
     achieved_date = in.readString();
     description = in.readInt();
     progress = in.readInt();
+    is_achieved = in.readByte() != 0;
   }
 
   @Override public int describeContents() {
@@ -42,6 +44,7 @@ public class Achievement implements Parcelable {
     dest.writeString(achieved_date);
     dest.writeInt(description);
     dest.writeInt(progress);
+    dest.writeByte((byte) (is_achieved ? 1 : 0));
   }
 
   public static final Parcelable.Creator<Achievement> CREATOR =

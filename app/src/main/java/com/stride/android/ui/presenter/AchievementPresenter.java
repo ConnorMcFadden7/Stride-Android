@@ -1,5 +1,7 @@
 package com.stride.android.ui.presenter;
 
+import com.stride.android.R;
+import com.stride.android.data.model.Achievement;
 import com.stride.android.ui.activity.ActivityFacade;
 import com.stride.android.ui.presenter.view.AchievementView;
 import com.stride.android.util.AchievementGenerator;
@@ -23,5 +25,18 @@ public class AchievementPresenter {
   public void present(AchievementView view) {
     this.mAchievementView = view;
     view.setAchievementAdapter(mAchievementGenerator.getAchievements());
+    setAchievementCount();
+  }
+
+  private void setAchievementCount() {
+    int achievementsCompleted = 0;
+    for (Achievement achievement : mAchievementGenerator.getAchievements()) {
+      if (achievement.is_achieved) {
+        ++achievementsCompleted;
+      }
+    }
+    mAchievementView.setAchievementCount(mActivityFacade.getResources()
+        .getString(R.string.achievements_count, achievementsCompleted,
+            mAchievementGenerator.getAchievements().size()));
   }
 }

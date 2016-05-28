@@ -4,6 +4,7 @@
   <color name="colorPrimaryDark">#FFBB62</color>
   <color name="colorAccent">#FF4081</color>
   <color name="color_main_text">#474948</color>
+  <color name="color_main_text_eighty_pct">#CC474948</color>
 
   <color name="progress_unfinished">#F7F7F7</color>
 

@@ -14,6 +14,7 @@
 
   <!-- Achievements -->
   <string name="achievements_title">Achievements</string>
+  <string name="achievements_count">%1$s/%2$s</string>
   <string name="achievements_walk1_title">Beginner Walker</string>
   <string name="achievements_walk1_description">Walk 5000 steps in one day!</string>
   <string name="achievements_burn1_title">Burner</string>

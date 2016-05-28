@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/non_premium_popup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    >
+
+  <FrameLayout
+      style="@style/AchievementDialogStyle"
+      android:id="@+id/badge_popup_view"
+      android:layout_marginTop="@dimen/generic_margin_slightly_larger"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/achievements_dialog_margin_top"
+        android:orientation="vertical"
+        >
+
+      <TextView
+          android:id="@+id/tv_achievement_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginBottom="@dimen/generic_margin_smaller"
+          android:layout_marginRight="@dimen/generic_margin_medium"
+          android:layout_marginLeft="@dimen/generic_margin_medium"
+          android:gravity="center"
+          android:textSize="@dimen/generic_text_size_slightly_medium"
+          android:textColor="@color/colorPrimary"
+          />
+
+      <TextView
+          android:id="@+id/tv_achievement_description"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
+          android:layout_gravity="center"
+          android:layout_marginRight="@dimen/generic_margin_medium"
+          android:layout_marginLeft="@dimen/generic_margin_medium"
+          android:textSize="@dimen/generic_text_size_medium"
+          android:textColor="@color/color_main_text"
+          android:gravity="center"
+          />
+
+      <TextView
+          android:id="@+id/tv_unlocked_date"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/generic_margin_slightly_smaller"
+          android:layout_marginBottom="@dimen/generic_margin_medium"
+          android:layout_gravity="center"
+          android:textColor="@color/color_main_text_eighty_pct"
+          android:text="derp"
+          android:textStyle="italic"
+          />
+
+    </LinearLayout>
+
+  </FrameLayout>
+
+  <ImageView
+      android:id="@+id/achievement_icon"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      />
+
+</RelativeLayout>
