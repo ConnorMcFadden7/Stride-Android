@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trophy_container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/achievements_header_bar_height"
+      >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/generic_margin_slightly_larger"
+        android:layout_centerVertical="true"
+        android:text="@string/achievements_title"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/generic_text_size_medium"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/generic_margin_slightly_larger"
+        android:layout_centerVertical="true"
+        android:text="10/100"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shadow_below"
+        />
+
+  </RelativeLayout>
+
+  <GridView
+      android:id="@+id/achievements_grid"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="@dimen/generic_margin_large"
+      android:numColumns="@integer/achievements_column_count"
+      />
+
+</LinearLayout>

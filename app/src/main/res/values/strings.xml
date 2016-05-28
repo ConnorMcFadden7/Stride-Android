@@ -12,4 +12,13 @@
   <string name="dashboard_daily_goal_option_two">15,000</string>
   <string name="dashboard_daily_goal_option_three">25,000</string>
 
+  <!-- Achievements -->
+  <string name="achievements_title">Achievements</string>
+  <string name="achievements_walk1_title">Beginner Walker</string>
+  <string name="achievements_walk1_description">Walk 5000 steps in one day!</string>
+  <string name="achievements_burn1_title">Burner</string>
+  <string name="achievements_burn1_description">Burn 500 calories in one day!</string>
+  <string name="achievements_ads_title">Goodbye annoyance</string>
+  <string name="achievements_ads_description">Upgrade to Premium and remove those pesky ads!</string>
+
 </resources>

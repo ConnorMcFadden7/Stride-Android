@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import com.stride.android.ui.fragment.DashboardFragment;
-import com.stride.android.ui.fragment.TrophyFragment;
+import com.stride.android.ui.fragment.AchievementFragment;
 
 /**
  * Created by connormcfadden on 27/05/16.
@@ -22,7 +22,7 @@ public class MainScreenPagerAdapter extends FragmentStatePagerAdapter {
       case 0:
         return new DashboardFragment();
       case 1:
-        return new TrophyFragment();
+        return new AchievementFragment();
     }
     return null;
   }
