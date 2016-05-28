@@ -16,25 +16,35 @@ public class AchievementGenerator {
   public enum Achievements {
 
     WALK_ONE(R.string.achievements_walk1_title, R.string.achievements_walk1_description,
-        R.drawable.ic_achievement_walk1_complete, R.drawable.ic_achievement_walk1_incomplete),
+        R.drawable.ic_achievement_walk1_complete, R.drawable.ic_achievement_walk1_incomplete,
+        R.drawable.ic_achievement_walk1_complete_big,
+        R.drawable.ic_achievement_walk1_incomplete_big),
 
     BURN_ONE(R.string.achievements_burn1_title, R.string.achievements_burn1_description,
-        R.drawable.ic_achievement_burn1_complete, R.drawable.ic_achievement_burn1_incomplete),
+        R.drawable.ic_achievement_burn1_complete, R.drawable.ic_achievement_burn1_incomplete,
+        R.drawable.ic_achievement_burn1_complete_big,
+        R.drawable.ic_achievement_burn1_incomplete_big),
 
     REMOVE_ADS(R.string.achievements_ads_title, R.string.achievements_ads_description,
-        R.drawable.ic_achievement_ads_complete, R.drawable.ic_achievement_ads_incomplete);
+        R.drawable.ic_achievement_ads_complete, R.drawable.ic_achievement_ads_incomplete,
+        R.drawable.ic_achievement_ads_complete_big, R.drawable.ic_achievement_ads_incomplete_big);
 
     private final @StringRes int title;
     private final @StringRes int description;
     private final @DrawableRes int achievedIcon;
+    private final @DrawableRes int achievedIconBig;
     private final @DrawableRes int unachievedIcon;
+    private final @DrawableRes int unachievedIconBig;
 
     Achievements(@StringRes int title, @StringRes int description, @DrawableRes int achievedIcon,
-        @DrawableRes int unachievedIcon) {
+        @DrawableRes int unachievedIcon, @DrawableRes int achievedIconBig,
+        @DrawableRes int unachievedIconBig) {
       this.title = title;
       this.description = description;
       this.achievedIcon = achievedIcon;
+      this.achievedIconBig = achievedIconBig;
       this.unachievedIcon = unachievedIcon;
+      this.unachievedIconBig = unachievedIconBig;
     }
 
     public @StringRes int getTitle() {
@@ -49,8 +59,16 @@ public class AchievementGenerator {
       return achievedIcon;
     }
 
+    public @DrawableRes int getAchievedIconBig() {
+      return achievedIconBig;
+    }
+
     public @DrawableRes int getUnachievedIcon() {
       return unachievedIcon;
+    }
+
+    public @DrawableRes int getUnachievedIconBig() {
+      return unachievedIconBig;
     }
   }
 
@@ -66,7 +84,9 @@ public class AchievementGenerator {
       achievement.title = Achievements.values()[i].getTitle();
       achievement.description = Achievements.values()[i].getDescription();
       achievement.icon = Achievements.values()[i].getAchievedIcon();
+      achievement.icon_big = Achievements.values()[i].getAchievedIconBig();
       achievement.empty_icon = Achievements.values()[i].getUnachievedIcon();
+      achievement.empty_icon_big = Achievements.values()[i].getUnachievedIconBig();
       achievements.add(achievement);
     }
     return achievements;

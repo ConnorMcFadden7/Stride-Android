@@ -13,7 +13,7 @@
   <dimen name="generic_margin_mediumer">12dp</dimen>
   <dimen name="generic_margin_large">16dp</dimen>
   <dimen name="generic_margin_slight_large">18dp</dimen>
-  <dimen name="generic_margin_slightly_larger">20dp</dimen>
+  <dimen name="generic_margin_slightly_larger">60dp</dimen>
   <dimen name="generic_margin_larger">26dp</dimen>
   <dimen name="generic_margin_massive">40dp</dimen>
 
@@ -33,6 +33,6 @@
   <dimen name="achievements_header_bar_height">60dp</dimen>
   <dimen name="shadow_height">4dip</dimen>
   <dimen name="achievements_image_size">60dp</dimen>
-  <dimen name="achievements_dialog_margin_top">50dp</dimen>
+  <dimen name="achievements_dialog_margin_top">60dp</dimen>
 
 </resources>

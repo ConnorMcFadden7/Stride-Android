@@ -21,6 +21,7 @@ import com.stride.android.ui.activity.ActivityFacade;
   @BindView(R.id.achievement_icon) ImageView achievementIcon;
   @BindView(R.id.tv_achievement_title) TextView achievementTitle;
   @BindView(R.id.tv_achievement_description) TextView achievementDescription;
+  @BindView(R.id.tv_unlocked_date) TextView dateAchievedText;
 
   private final ActivityFacade activityFacade;
 
@@ -39,5 +40,9 @@ import com.stride.android.ui.activity.ActivityFacade;
 
   public void setDescription(@StringRes int description) {
     achievementDescription.setText(activityFacade.getResources().getString(description));
+  }
+
+  public void setDateAchievedText(String dateAchievedText) {
+    this.dateAchievedText.setText(dateAchievedText);
   }
 }
