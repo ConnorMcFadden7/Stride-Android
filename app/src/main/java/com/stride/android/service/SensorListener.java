@@ -12,8 +12,10 @@ import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
+import com.stride.android.data.local.PreferencesHelper;
 import com.stride.android.data.persistence.DatabaseHelper;
 import com.stride.android.ioc.IocUtil;
+import com.stride.android.util.AchievementGenerator;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.inject.Inject;
@@ -24,6 +26,7 @@ import javax.inject.Inject;
 public class SensorListener extends Service implements SensorEventListener {
 
   @Inject DatabaseHelper databaseHelper;
+  @Inject PreferencesHelper preferencesHelper;
 
   private final static int NOTIFICATION_ID = 1;
 
@@ -51,6 +54,12 @@ public class SensorListener extends Service implements SensorEventListener {
 
     if (steps > 0) {
       //WAIT_FOR_VALID_STEPS = false;
+
+      if (steps == preferencesHelper.getUserGoal()) {
+        if (!AchievementGenerator.Achievements.REACH_GOAL.isReached()) {
+          AchievementGenerator.Achievements.REACH_GOAL.setReached();
+        }
+      }
 
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
       String date = sdf.format(new Date());
