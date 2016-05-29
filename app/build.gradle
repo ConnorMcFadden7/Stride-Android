@@ -1,12 +1,13 @@
 buildscript {
   repositories {
     mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
   }
 
   dependencies {
     classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'io.fabric.tools:gradle:1.+'
+    classpath 'io.fabric.tools:gradle:1.+'
   }
 }
 
@@ -14,7 +15,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 repositories {
-    maven { url 'https://maven.fabric.io/public' }
+  maven { url 'https://maven.fabric.io/public' }
 }
 
 apply plugin: 'com.neenbedankt.android-apt'
@@ -55,6 +56,7 @@ dependencies {
   compile 'com.nhaarman.listviewanimations:lib-core:3.1.0@aar'
   compile 'com.anjlab.android.iab.v3:library:1.0.31'
   compile 'com.google.android.gms:play-services-ads:8.4.0'
+  compile 'com.github.ishan1604:uberprogressview:v1.1.0'
 
   /** DAGGER 2 **/
   provided 'org.glassfish:javax.annotation:10.0-b28'
@@ -67,7 +69,7 @@ dependencies {
   provided 'com.facebook.stetho:stetho:1.3.1'
   debugCompile 'com.facebook.stetho:stetho-okhttp3:1.3.1'
   provided 'com.facebook.stetho:stetho-okhttp3:1.3.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
-        transitive = true;
-    }
+  compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+    transitive = true;
+  }
 }

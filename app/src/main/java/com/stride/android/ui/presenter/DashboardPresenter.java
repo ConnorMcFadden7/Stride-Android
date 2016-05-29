@@ -46,7 +46,7 @@ public class DashboardPresenter {
     view.setStepsYesterdayText(model.getYesterdaysSteps());
     view.setAverageSteps(model.getTotalAverage());
 
-    if (model.getTodaysSteps() >= userGoal) {
+    if (model.getTodaysSteps() >= userGoal && userGoal > -1) {
       view.setGoalComplete();
     } else {
       view.setStepsToday(model.getTodaysSteps());
