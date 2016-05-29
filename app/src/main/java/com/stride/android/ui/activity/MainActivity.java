@@ -16,6 +16,7 @@ import com.stride.android.R;
 import com.stride.android.data.local.PreferencesHelper;
 import com.stride.android.ioc.ActivityComponent;
 import com.stride.android.service.SensorListener;
+import com.stride.android.ui.BackButtonListener;
 import com.stride.android.ui.presenter.MainPresenter;
 import com.stride.android.ui.presenter.view.MainViewFactory;
 import com.stride.android.util.payment.PaymentSystem;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity {
   private InterstitialAd mInterstitialAd;
   private final Handler mAdHandler = new Handler();
   private boolean mIsInterstitialAdShowing = false;
+  private BackButtonListener mBackButtonListener = BackButtonListener.NULL;
 
   @Override public boolean isHomeAsUpEnabled() {
     return false;
@@ -94,8 +96,20 @@ public class MainActivity extends BaseActivity {
     return super.onOptionsItemSelected(item);
   }
 
+  @Override public void onBackPressed() {
+    if (mBackButtonListener != BackButtonListener.NULL) {
+      mBackButtonListener.onBackPressed();
+    } else {
+      super.onBackPressed();
+    }
+  }
+
   @Override protected void injectActivity(ActivityComponent activityComponent) {
     activityComponent.inject(this);
+  }
+
+  public void setBackPressedListener(BackButtonListener backPressedListener) {
+    this.mBackButtonListener = backPressedListener;
   }
 
   private void presentMainScreen() {

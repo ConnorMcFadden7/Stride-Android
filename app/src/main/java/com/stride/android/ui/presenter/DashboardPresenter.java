@@ -1,8 +1,10 @@
 package com.stride.android.ui.presenter;
 
-import android.util.Log;
 import com.stride.android.data.local.PreferencesHelper;
 import com.stride.android.repository.DashboardRespository;
+import com.stride.android.ui.BackButtonListener;
+import com.stride.android.ui.activity.ActivityFacade;
+import com.stride.android.ui.activity.MainActivity;
 import com.stride.android.ui.presenter.model.DashboardModel;
 import com.stride.android.ui.presenter.view.DashboardView;
 import com.stride.android.ui.widget.DailyGoalPanel;
@@ -21,14 +23,16 @@ public class DashboardPresenter {
   private final PreferencesHelper mPreferencesHelper;
   private final CaloriesHelper mCaloriesHelper;
   private final DashboardRespository mDashboardRepository;
+  private final ActivityFacade mActivityFacade;
 
   private DashboardView dashboardView;
 
   @Inject DashboardPresenter(PreferencesHelper preferencesHelper, CaloriesHelper caloriesHelper,
-      DashboardRespository dashboardRepository) {
+      DashboardRespository dashboardRepository, ActivityFacade activityFacade) {
     this.mPreferencesHelper = preferencesHelper;
     this.mCaloriesHelper = caloriesHelper;
     this.mDashboardRepository = dashboardRepository;
+    this.mActivityFacade = activityFacade;
   }
 
   public void present(final DashboardView view) {
@@ -47,6 +51,7 @@ public class DashboardPresenter {
     } else {
       view.setStepsToday(model.getTodaysSteps());
     }
+    handleBackPressed();
   }
 
   private void initToggleListener() {
@@ -76,5 +81,15 @@ public class DashboardPresenter {
         mPreferencesHelper.getUserGoal() > -1 ? mPreferencesHelper.getUserGoal()
             : USER_DEFAULT_GOAL);
     dashboardView.hidePanel();
+  }
+
+  private void handleBackPressed() {
+    ((MainActivity) mActivityFacade.asActivity()).setBackPressedListener(new BackButtonListener() {
+      @Override public void onBackPressed() {
+        dashboardView.hidePanel();
+        ((MainActivity) mActivityFacade.asActivity()).setBackPressedListener(
+            BackButtonListener.NULL);
+      }
+    });
   }
 }
