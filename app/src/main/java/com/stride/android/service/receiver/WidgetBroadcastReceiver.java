@@ -34,7 +34,7 @@ public class WidgetBroadcastReceiver extends AppWidgetProvider {
 
       views.setTextViewText(R.id.tv_current_steps, context.getResources()
           .getString(R.string.widget_current_steps,
-              String.valueOf(databaseHelper.getSteps(TimeUtils.getToday()))));
+              String.valueOf(databaseHelper.getStepsForDate(TimeUtils.getToday()))));
       views.setOnClickPendingIntent(R.id.widget_container, pendingIntent);
 
       appWidgetManager.updateAppWidget(appWidgetId, views);

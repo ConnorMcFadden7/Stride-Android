@@ -14,7 +14,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.stride.android.R;
 import com.stride.android.data.local.PreferencesHelper;
-import com.stride.android.data.persistence.DatabaseHelper;
 import com.stride.android.ioc.ActivityComponent;
 import com.stride.android.service.SensorListener;
 import com.stride.android.ui.presenter.MainPresenter;
@@ -32,7 +31,6 @@ public class MainActivity extends BaseActivity {
   @BindView(R.id.ad_view) AdView mAdView;
 
   // maybe a better helper method like a Provider to get the steps
-  @Inject DatabaseHelper databaseHelper;
   @Inject MainPresenter mainPresenter;
   @Inject MainViewFactory mainViewFactory;
   @Inject ActivityFacade activityFacade;

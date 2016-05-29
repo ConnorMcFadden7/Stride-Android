@@ -13,7 +13,7 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 import com.stride.android.data.local.PreferencesHelper;
-import com.stride.android.data.persistence.DatabaseHelper;
+import com.stride.android.data.provider.StepsProvider;
 import com.stride.android.ioc.IocUtil;
 import com.stride.android.util.AchievementGenerator;
 import java.text.SimpleDateFormat;
@@ -25,7 +25,7 @@ import javax.inject.Inject;
  */
 public class SensorListener extends Service implements SensorEventListener {
 
-  @Inject DatabaseHelper databaseHelper;
+  @Inject StepsProvider stepsProvider;
   @Inject PreferencesHelper preferencesHelper;
   @Inject AchievementGenerator achievementGenerator;
 
@@ -67,7 +67,7 @@ public class SensorListener extends Service implements SensorEventListener {
 
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
       String date = sdf.format(new Date());
-      databaseHelper.insertDay(date, steps);
+      stepsProvider.insertSteps(date, steps);
 
       //// TODO: 23/05/16 store in db
       //updateNotificationState();
@@ -155,7 +155,7 @@ public class SensorListener extends Service implements SensorEventListener {
     if (prefs.getBoolean("notification", true)) {
       int goal = prefs.getInt("goal", 10000);
       Database db = Database.getInstance(this);
-      int today_offset = db.getSteps(Util.getToday());
+      int today_offset = db.getStepsForDate(Util.getToday());
       if (steps == 0) steps = db.getCurrentSteps(); // use saved value if we haven't anything better
       db.close();
       Notification.Builder notificationBuilder = new Notification.Builder(this);

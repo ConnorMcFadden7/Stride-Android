@@ -1,6 +1,6 @@
 package com.stride.android.repository;
 
-import com.stride.android.data.persistence.DatabaseHelper;
+import com.stride.android.data.provider.StepsProvider;
 import com.stride.android.ui.presenter.model.DashboardModel;
 import com.stride.android.util.TimeUtils;
 import javax.inject.Inject;
@@ -11,12 +11,12 @@ import javax.inject.Inject;
 public class DashboardRespository {
 
   private final DashboardModel.DashboardMapper dashboardMapper;
-  private final DatabaseHelper databaseHelper;
+  private final StepsProvider stepsProvider;
 
   @Inject DashboardRespository(DashboardModel.DashboardMapper dashboardMapper,
-      DatabaseHelper databaseHelper) {
+      StepsProvider stepsProvider) {
     this.dashboardMapper = dashboardMapper;
-    this.databaseHelper = databaseHelper;
+    this.stepsProvider = stepsProvider;
   }
 
   public DashboardModel getDashboardModel() {
@@ -24,14 +24,14 @@ public class DashboardRespository {
   }
 
   public int getTodaysSteps() {
-    return databaseHelper.getSteps(TimeUtils.getToday());
+    return stepsProvider.getSteps(TimeUtils.getToday());
   }
 
   public int getYesterdaysSteps() {
-    return databaseHelper.getSteps(TimeUtils.getYesterday());
+    return stepsProvider.getSteps(TimeUtils.getYesterday());
   }
 
   public int getAverageSteps() {
-    return databaseHelper.getAverageSteps();
+    return stepsProvider.getAverageSteps();
   }
 }

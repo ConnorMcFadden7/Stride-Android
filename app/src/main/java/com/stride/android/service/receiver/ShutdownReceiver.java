@@ -12,7 +12,7 @@ public class ShutdownReceiver extends BroadcastReceiver {
   @Override public void onReceive(final Context context, final Intent intent) {
     /*Database db = Database.getInstance(context);
     // if it's already a new day, add the temp. steps to the last one
-    if (db.getSteps(Util.getToday()) == Integer.MIN_VALUE) {
+    if (db.getStepsForDate(Util.getToday()) == Integer.MIN_VALUE) {
       int steps = db.getCurrentSteps();
       int pauseDifference =
           steps - context.getSharedPreferences("pedometer", Context.MODE_MULTI_PROCESS)

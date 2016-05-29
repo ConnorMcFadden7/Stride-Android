@@ -35,7 +35,7 @@ public class RebootReceiver extends BroadcastReceiver {
       int steps = db.getCurrentSteps();
       long date = db.getLastDay();
       if (BuildConfig.DEBUG) {
-        Logger.log("Trying to recover " + (db.getSteps(date) + steps) + " steps");
+        Logger.log("Trying to recover " + (db.getStepsForDate(date) + steps) + " steps");
       }
       db.updateSteps(date, steps);
     }

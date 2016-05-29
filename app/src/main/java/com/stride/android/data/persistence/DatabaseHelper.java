@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import java.util.Calendar;
-import java.util.Date;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -18,7 +15,7 @@ import javax.inject.Singleton;
 
   public static final String DATABASE_NAME = "stride";
 
-  // IMPORTANT NOTE: When changing DATABASE_VERSION please update onUpgrade
+  // When changing DATABASE_VERSION update onUpgrade
   public static final int DATABASE_VERSION = 1;
 
   // Tables definitions
@@ -41,7 +38,7 @@ import javax.inject.Singleton;
     }
   }
 
-  public void insertDay(String date, int steps) {
+  public void insertOrUpdateSteps(String date, int steps) {
     getWritableDatabase().beginTransaction();
     try {
       Cursor c = getReadableDatabase().query("progress", new String[] { "date" }, "date = ?",
@@ -60,13 +57,7 @@ import javax.inject.Singleton;
           values.put("date", date);
           values.put("steps", steps);
           getWritableDatabase().insert("progress", null, values);
-
-          // add 'steps' to yesterdays count
-          Calendar yesterday = Calendar.getInstance();
-          //  yesterday.setTimeInMillis(date);
-          yesterday.add(Calendar.DAY_OF_YEAR, -1);
         }
-        // updateSteps(yesterday.getTimeInMillis(), steps);
       }
       c.close();
       getWritableDatabase().setTransactionSuccessful();
@@ -85,25 +76,6 @@ import javax.inject.Singleton;
     return average;
   }
 
-  //// TODO: 23/05/16 run these as constants
-  public void updateSteps(final String date, int steps) {
-    getWritableDatabase().execSQL("UPDATE progress SET steps = " + steps + " WHERE date = " + date);
-  }
-
-  public int getDateGivenSteps(final long date) {
-    Cursor c = getReadableDatabase().query("progress", new String[] { "steps" }, "date = ?",
-        new String[] { String.valueOf(date) }, null, null, null);
-    c.moveToFirst();
-    int re;
-    if (c.getCount() == 0) {
-      re = Integer.MIN_VALUE;
-    } else {
-      re = c.getInt(0);
-    }
-    c.close();
-    return re;
-  }
-
   public int getTotalSteps() {
     Cursor c =
         getReadableDatabase().query("progress", new String[] { "MAX(steps)" }, "date > 0", null,
@@ -114,64 +86,13 @@ import javax.inject.Singleton;
     return re;
   }
 
-  public int getDays() {
-    /*Cursor c = getReadableDatabase()
-        .query("progress", new String[] { "COUNT(*)" }, "steps > ? AND date < ? AND date > 0",
-            new String[] { String.valueOf(0), String.valueOf(Util.getToday()) }, null, null, null);
-    c.moveToFirst();
-    // todays is not counted yet
-    int re = c.getInt(0) + 1;
-    c.close();
-    return re <= 0 ? 1 : re;
-  }*/
-
-    return 0;
+  public int getStepsForDate(final String date) {
+    Cursor stepsCursor =
+        getReadableDatabase().query("progress", new String[] { "steps" }, "date = ?",
+            new String[] { date }, null, null, null);
+    stepsCursor.moveToFirst();
+    int steps = stepsCursor.getInt(0);
+    stepsCursor.close();
+    return steps;
   }
-
-  public int getSteps(final String date) {
-    Cursor c = getReadableDatabase().query("progress", new String[] { "steps" }, "date = ?",
-        new String[] { date }, null, null, null);
-    c.moveToFirst();
-    int re;
-    if (c.getCount() == 0) {
-      re = Integer.MIN_VALUE;
-    } else {
-      re = c.getInt(0);
-    }
-    c.close();
-    return re;
-  }
-
- /* public int getTodaysSteps(int date) {
-    Cursor cursor = getReadableDatabase().query("progress", new String[] { "date" }, "date > 0", null, null, null, null);
-    cursor.moveToFirst();
-
-    //cursor.get
-
-    /*
-    public long getLastDay() {
-        Cursor c = getReadableDatabase()
-                .query(DB_NAME, new String[]{"date"}, null, null, null, null, "date DESC", "1");
-        long re;
-        if (c.moveToFirst()) {
-            re = c.getLong(0);
-        } else {
-            re = System.currentTimeMillis();
-        }
-        c.close();
-        return re;
-    }
-
-
-    c.moveToFirst();
-    int re;
-    if (c.getCount() == 0) {
-      re = Integer.MIN_VALUE;
-    } else {
-      re = c.getInt(0);
-    }
-    c.close();
-    return re;
-  }
-       */
 }
