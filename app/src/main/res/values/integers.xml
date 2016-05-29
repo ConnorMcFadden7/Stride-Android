@@ -2,5 +2,6 @@
 <resources>
 
   <integer name="achievements_column_count">4</integer>
+  <integer name="previous_steps_column_count">2</integer>
 
 </resources>

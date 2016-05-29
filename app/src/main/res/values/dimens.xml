@@ -38,6 +38,9 @@
   <dimen name="splash_progress_size">140dp</dimen>
   <dimen name="splash_progress_margin_top">60dp</dimen>
 
+  <!-- Progress History -->
+  <dimen name="progress_history_progress_bar_size">130dp</dimen>
+
   <!-- Other dimens -->
   <dimen name="achievements_header_bar_height">60dp</dimen>
   <dimen name="shadow_height">4dip</dimen>

@@ -5,13 +5,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import com.stride.android.ui.fragment.DashboardFragment;
 import com.stride.android.ui.fragment.AchievementFragment;
+import com.stride.android.ui.fragment.PreviousStepsFragment;
 
 /**
  * Created by connormcfadden on 27/05/16.
  */
 public class MainScreenPagerAdapter extends FragmentStatePagerAdapter {
 
-  private static final int PAGES = 2;
+  private static final int PAGES = 3;
 
   public MainScreenPagerAdapter(FragmentManager fm) {
     super(fm);
@@ -22,6 +23,8 @@ public class MainScreenPagerAdapter extends FragmentStatePagerAdapter {
       case 0:
         return new DashboardFragment();
       case 1:
+        return new PreviousStepsFragment();
+      case 2:
         return new AchievementFragment();
     }
     return null;

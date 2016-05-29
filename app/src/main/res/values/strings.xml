@@ -46,4 +46,7 @@
   <!-- Widget -->
   <string name="widget_current_steps">Current steps %s</string>
 
+  <!-- Progress History -->
+  <string name="progress_history_steps">%s s</string>
+
 </resources>

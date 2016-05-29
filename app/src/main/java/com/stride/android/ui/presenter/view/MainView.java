@@ -23,7 +23,7 @@ import com.stride.android.ui.adapter.MainScreenPagerAdapter;
 @AutoFactory public class MainView {
 
   private static final int[] TABS = {
-      R.drawable.selector_dashboard, R.drawable.selector_trophy
+      R.drawable.selector_dashboard, R.drawable.selector_calendar, R.drawable.selector_trophy
   };
 
   @BindView(R.id.main_pager) ViewPager mainPager;
