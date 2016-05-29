@@ -22,6 +22,22 @@ import com.stride.android.util.SpannableUtil;
  */
 @AutoFactory public class DashboardView {
 
+  public interface Listener {
+    Listener NULL = new Listener() {
+      @Override public void onPanelShown() {
+        // Empty
+      }
+
+      @Override public void onPanelHidden() {
+        // Empty
+      }
+    };
+
+    void onPanelShown();
+
+    void onPanelHidden();
+  }
+
   @BindView(R.id.main_progress) ProgressBar mTodayProgress;
   @BindView(R.id.tv_current_steps) TextView mCurrentSteps;
   @BindView(R.id.tv_goal) TextView mTextGoal;
@@ -32,6 +48,7 @@ import com.stride.android.util.SpannableUtil;
   @BindView(R.id.sliding_layout) SlidingUpPanelLayout mSlidingLayout;
 
   private final Context mContext;
+  private Listener mListener = Listener.NULL;
 
   DashboardView(@NonNull View parent, Context context) {
     ButterKnife.bind(this, parent);
@@ -69,11 +86,13 @@ import com.stride.android.util.SpannableUtil;
   }
 
   public void showPanel() {
+    mListener.onPanelShown();
     mDailyGoalPanel.setVisibility(View.VISIBLE);
     mSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
   }
 
   public void hidePanel() {
+    mListener.onPanelHidden();
     mDailyGoalPanel.setVisibility(View.INVISIBLE);
     mSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
   }
@@ -101,6 +120,10 @@ import com.stride.android.util.SpannableUtil;
 
   public void setAverageSteps(int steps) {
     animateCounter(steps, mStepsAverage, 1000, R.string.dashboard_average_steps);
+  }
+
+  public void setListener(Listener listener) {
+    mListener = listener;
   }
 
   private void animateCounter(int count, final TextView textView, int duration,

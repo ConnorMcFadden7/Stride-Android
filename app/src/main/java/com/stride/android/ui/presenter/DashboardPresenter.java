@@ -84,9 +84,17 @@ public class DashboardPresenter {
   }
 
   private void handleBackPressed() {
-    ((MainActivity) mActivityFacade.asActivity()).setBackPressedListener(new BackButtonListener() {
-      @Override public void onBackPressed() {
-        dashboardView.hidePanel();
+    dashboardView.setListener(new DashboardView.Listener() {
+      @Override public void onPanelShown() {
+        ((MainActivity) mActivityFacade.asActivity()).setBackPressedListener(
+            new BackButtonListener() {
+              @Override public void onBackPressed() {
+                dashboardView.hidePanel();
+              }
+            });
+      }
+
+      @Override public void onPanelHidden() {
         ((MainActivity) mActivityFacade.asActivity()).setBackPressedListener(
             BackButtonListener.NULL);
       }
