@@ -130,11 +130,12 @@ public class PaymentSystem {
           @Override public void onBillingInitialized() {
             boolean hasOwnedPurchases = billingProcessor.loadOwnedPurchasesFromGoogle();
 
-            if (hasOwnedPurchases) {
+            //// TODO: 29/05/16 fix
+           /* if (hasOwnedPurchases) {
               preferencesHelper.setHasUpgraded(true);
             } else {
               preferencesHelper.setHasUpgraded(false);
-            }
+            }*/
 
             purchaseHistory.onResponse();
             billingProcessor.release();

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.stride.android.R;
+import com.stride.android.ioc.ServiceLocator;
 
 /**
  * Created by connormcfadden on 27/05/16.
@@ -27,7 +28,7 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
       }
 
       @Override public void onCustomGoal() {
-
+        // Empty
       }
     };
 
@@ -83,20 +84,7 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
     View mainLayout = inflater.inflate(R.layout.layout_daily_goal_panel, this, true);
     ButterKnife.bind(this, mainLayout);
     setupClickListeners();
-  }
-
-  @Override protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    if (!isInEditMode()) {
-      //      ServiceLocator.get().getBus().register(this);
-    }
-  }
-
-  @Override protected void onDetachedFromWindow() {
-    if (!isInEditMode()) {
-      //  ServiceLocator.get().getBus().unregister(this);
-    }
-    super.onDetachedFromWindow();
+    hideOtherOptionIfNotPremium();
   }
 
   private void setupClickListeners() {
@@ -168,6 +156,12 @@ public class DailyGoalPanel extends LinearLayout implements View.OnClickListener
     selectedView.setSelected(true);
     unselectedOne.setSelected(false);
     unselectedTwo.setSelected(false);
+  }
+
+  private void hideOtherOptionIfNotPremium() {
+    boolean hasUpgraded = ServiceLocator.get().getPreferences().hasUpgraded();
+    mCustomGoal.setVisibility(hasUpgraded ? View.VISIBLE : View.GONE);
+    mSetCustomGoal.setVisibility(hasUpgraded ? View.VISIBLE : View.GONE);
   }
 
   public void updateUi(int newGoal) {

@@ -91,7 +91,10 @@ import javax.inject.Singleton;
         getReadableDatabase().query("progress", new String[] { "steps" }, "date = ?",
             new String[] { date }, null, null, null);
     stepsCursor.moveToFirst();
-    int steps = stepsCursor.getInt(0);
+    int steps = 0;
+    if (stepsCursor.getCount() > 0) {
+      steps = stepsCursor.getInt(0);
+    }
     stepsCursor.close();
     return steps;
   }

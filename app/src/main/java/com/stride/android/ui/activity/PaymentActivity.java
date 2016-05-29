@@ -8,6 +8,7 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.stride.android.R;
 import com.stride.android.data.local.PreferencesHelper;
+import com.stride.android.util.AchievementGenerator;
 import com.stride.android.util.payment.PaymentSystem;
 import com.stride.android.util.payment.Sku;
 import javax.inject.Inject;
@@ -17,6 +18,7 @@ import javax.inject.Inject;
  */
 public class PaymentActivity extends BaseActivity implements BillingProcessor.IBillingHandler {
 
+  @Inject AchievementGenerator achievementGenerator;
   @Inject PreferencesHelper preferencesHelper;
   private String mProductId;
   private BillingProcessor mBillingProcessor;
@@ -48,6 +50,7 @@ public class PaymentActivity extends BaseActivity implements BillingProcessor.IB
         getResources().getString(R.string.main_screen_one_off_payment));
     dialog.setCanceledOnTouchOutside(false);
     preferencesHelper.setHasUpgraded(true);
+    achievementGenerator.achievePremium();
     setResult(PaymentSystem.SUCCESS_RESULT_CODE);
     finish();
   }

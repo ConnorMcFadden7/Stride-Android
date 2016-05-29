@@ -214,4 +214,10 @@ public class AchievementGenerator {
       }
     }
   }
+
+  public void achievePremium() {
+    if (!Achievements.REMOVE_ADS.isReached()) {
+      Achievements.REMOVE_ADS.setReached();
+    }
+  }
 }
