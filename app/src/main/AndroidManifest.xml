@@ -77,6 +77,9 @@
           />
     </receiver>
 
-  </application>
+      <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="2c6d8f1247312851d5ebd3b17696dcdd5bb016cf" />
+    </application>
 
 </manifest>

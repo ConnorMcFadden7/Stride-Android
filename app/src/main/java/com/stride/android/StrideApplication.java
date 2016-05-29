@@ -1,6 +1,7 @@
 package com.stride.android;
 
 import android.app.Application;
+import com.crashlytics.android.Crashlytics;
 import com.google.common.annotations.VisibleForTesting;
 import com.squareup.otto.Bus;
 import com.stride.android.ioc.ApplicationComponent;
@@ -8,6 +9,7 @@ import com.stride.android.ioc.DaggerApplicationComponent;
 import com.stride.android.ioc.ServiceLocator;
 import com.stride.android.ioc.module.ApplicationModule;
 import com.stride.android.util.StethoUtil;
+import io.fabric.sdk.android.Fabric;
 import javax.inject.Inject;
 
 public class StrideApplication extends Application {
@@ -20,6 +22,7 @@ public class StrideApplication extends Application {
 
   @Override public void onCreate() {
     super.onCreate();
+    Fabric.with(this, new Crashlytics());
     sStrideApplication = this;
     initComponent();
     mComponent.inject(this);
