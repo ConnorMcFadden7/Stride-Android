@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 import com.stride.android.R;
-import com.stride.android.data.persistence.DatabaseHelper;
+import com.stride.android.data.provider.StepsProvider;
 import com.stride.android.ioc.IocUtil;
 import com.stride.android.ui.activity.MainActivity;
 import com.stride.android.util.TimeUtils;
@@ -18,7 +18,7 @@ import javax.inject.Inject;
  */
 public class WidgetBroadcastReceiver extends AppWidgetProvider {
 
-  @Inject DatabaseHelper databaseHelper;
+  @Inject StepsProvider stepsProvider;
 
   @Override
   public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -34,7 +34,7 @@ public class WidgetBroadcastReceiver extends AppWidgetProvider {
 
       views.setTextViewText(R.id.tv_current_steps, context.getResources()
           .getString(R.string.widget_current_steps,
-              String.valueOf(databaseHelper.getStepsForDate(TimeUtils.getToday()))));
+              String.valueOf(stepsProvider.getSteps(TimeUtils.getToday()))));
       views.setOnClickPendingIntent(R.id.widget_container, pendingIntent);
 
       appWidgetManager.updateAppWidget(appWidgetId, views);
