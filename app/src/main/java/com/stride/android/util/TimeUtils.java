@@ -1,6 +1,5 @@
 package com.stride.android.util;
 
-import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,7 +31,7 @@ public class TimeUtils {
     Calendar calendar = Calendar.getInstance();
     calendar.setTimeInMillis(System.currentTimeMillis());
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     return sdf.format(new Date(calendar.getTimeInMillis()));
   }
 
@@ -41,7 +40,7 @@ public class TimeUtils {
     calendar.setTimeInMillis(System.currentTimeMillis());
     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) - 1);
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     return sdf.format(new Date(calendar.getTimeInMillis()));
   }
 }

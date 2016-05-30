@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import com.stride.android.data.model.ProgressHistory;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,5 +121,13 @@ import javax.inject.Singleton;
     }
 
     return progressHistories;
+  }
+
+  public boolean isFirstEntry() {
+    Cursor progressCursor = getReadableDatabase().rawQuery("SELECT * FROM progress", null);
+
+    Log.e("DatabaseHelper", "isFirstEntry: " + progressCursor.getCount());
+
+    return progressCursor.getCount() == 1;
   }
 }

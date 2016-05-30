@@ -1,6 +1,8 @@
 package com.stride.android.data.provider;
 
+import com.stride.android.data.model.ProgressHistory;
 import com.stride.android.data.persistence.DatabaseHelper;
+import com.stride.android.util.TimeUtils;
 import javax.inject.Inject;
 
 /**
@@ -27,5 +29,20 @@ public class StepsProvider {
 
   public void insertSteps(String date, int steps) {
     databaseHelper.insertOrUpdateSteps(date, steps);
+  }
+
+  public int getTotalStepsApartFromToday() {
+    int totalSteps = 0;
+    for (ProgressHistory progressHistory : databaseHelper.getProgressHistory()) {
+      if (!progressHistory.date.equals(TimeUtils.getToday())) {
+        totalSteps += progressHistory.steps;
+      }
+    }
+
+    return totalSteps;
+  }
+
+  public boolean isFirstEntry() {
+    return databaseHelper.isFirstEntry();
   }
 }
