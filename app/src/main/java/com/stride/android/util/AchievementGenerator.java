@@ -176,6 +176,7 @@ public class AchievementGenerator {
 
   public static final int WALK_ONE_STEP_COUNT = 5000;
   public static final int WALK_TWO_STEP_COUNT = 15000;
+  private static final int PLACE_HOLDER_COUNT = 40;
 
   @Inject AchievementGenerator() {
     //
@@ -196,6 +197,8 @@ public class AchievementGenerator {
       achievement.achieved_date = Achievements.values()[i].getDateReached();
       achievements.add(achievement);
     }
+
+    achievements.addAll(createPlaceHolders());
     return achievements;
   }
 
@@ -219,5 +222,16 @@ public class AchievementGenerator {
     if (!Achievements.REMOVE_ADS.isReached()) {
       Achievements.REMOVE_ADS.setReached();
     }
+  }
+
+  private List<Achievement> createPlaceHolders() {
+    List<Achievement> achievementList = new ArrayList<>();
+    for (int i = 0; i < PLACE_HOLDER_COUNT; i++) {
+      Achievement achievement = new Achievement();
+      achievement.icon = -1;
+      achievementList.add(achievement);
+    }
+
+    return achievementList;
   }
 }

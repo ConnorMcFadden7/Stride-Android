@@ -46,10 +46,11 @@
 
   <GridView
       android:id="@+id/achievements_grid"
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:padding="@dimen/generic_margin_large"
       android:numColumns="@integer/achievements_column_count"
+      android:scrollbars="none"
       />
 
 </LinearLayout>

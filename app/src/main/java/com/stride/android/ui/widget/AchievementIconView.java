@@ -22,22 +22,11 @@ import com.stride.android.R;
  */
 public class AchievementIconView extends FrameLayout {
 
-  public interface ProgressAnimationListener {
-    ProgressAnimationListener NULL = new ProgressAnimationListener() {
-      @Override public void onProgressAnimationEnded() {
-        // Empty
-      }
-    };
-
-    void onProgressAnimationEnded();
-  }
-
   // Views
   @BindView(R.id.achievement_image) ImageView achievementImage;
   @BindView(R.id.achievement_progress) ProgressBar achievementProgress;
 
   private Context mContext;
-  private ProgressAnimationListener mProgressAnimationListener = ProgressAnimationListener.NULL;
 
   public AchievementIconView(Context context) {
     super(context);
@@ -81,28 +70,11 @@ public class AchievementIconView extends FrameLayout {
         R.animator.achievement_progress_bar);
     objectAnimator.setTarget(achievementProgress);
     objectAnimator.setIntValues(progress);
-    objectAnimator.addListener(new Animator.AnimatorListener() {
-      @Override public void onAnimationStart(Animator animator) {
-        //
-      }
-
-      @Override public void onAnimationEnd(Animator animation) {
-        mProgressAnimationListener.onProgressAnimationEnded();
-      }
-
-      @Override public void onAnimationCancel(Animator animator) {
-        //
-      }
-
-      @Override public void onAnimationRepeat(Animator animator) {
-        //
-      }
-    });
     objectAnimator.start();
   }
 
-  public void addProgressListener(ProgressAnimationListener progressAnimationListener) {
-    this.mProgressAnimationListener = progressAnimationListener;
+  public void setPlaceHolder() {
+    achievementImage.setImageResource(R.drawable.ic_achievement_placeholder);
   }
 }
 

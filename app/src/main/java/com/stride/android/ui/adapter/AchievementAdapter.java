@@ -68,22 +68,26 @@ public class AchievementAdapter extends BaseAdapter {
   }
 
   private void bindHolder(final ViewHolder holder, final Achievement achievement) {
-    if (!achievement.is_achieved) {
-      holder.achievementIconView.setImage(achievement.empty_icon);
+    if (achievement.icon == -1) {
+      holder.achievementIconView.setPlaceHolder();
     } else {
-      holder.achievementIconView.setAchieved();
-      holder.achievementIconView.setProgress(achievement.progress);
-      holder.achievementIconView.setImage(achievement.icon);
-    }
-
-    holder.achievementIconView.getBadge().setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        if (mContext.canCommitFragmentTransaction()) {
-          AchievementDialogFragment.newInstance(achievement)
-              .show(mContext.getFragmentManager(), AchievementDialogFragment.ACHIEVEMENT_DIALOG);
-        }
+      if (!achievement.is_achieved) {
+        holder.achievementIconView.setImage(achievement.empty_icon);
+      } else {
+        holder.achievementIconView.setAchieved();
+        holder.achievementIconView.setProgress(achievement.progress);
+        holder.achievementIconView.setImage(achievement.icon);
       }
-    });
+
+      holder.achievementIconView.getBadge().setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+          if (mContext.canCommitFragmentTransaction()) {
+            AchievementDialogFragment.newInstance(achievement)
+                .show(mContext.getFragmentManager(), AchievementDialogFragment.ACHIEVEMENT_DIALOG);
+          }
+        }
+      });
+    }
   }
 
   static class ViewHolder {
