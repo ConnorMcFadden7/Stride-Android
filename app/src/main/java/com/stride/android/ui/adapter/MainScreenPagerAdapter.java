@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import com.stride.android.ui.fragment.DashboardFragment;
 import com.stride.android.ui.fragment.AchievementFragment;
-import com.stride.android.ui.fragment.PreviousStepsFragment;
+import com.stride.android.ui.fragment.ProgressHistoryFragment;
 
 /**
  * Created by connormcfadden on 27/05/16.
@@ -23,7 +23,7 @@ public class MainScreenPagerAdapter extends FragmentStatePagerAdapter {
       case 0:
         return new DashboardFragment();
       case 1:
-        return new PreviousStepsFragment();
+        return new ProgressHistoryFragment();
       case 2:
         return new AchievementFragment();
     }

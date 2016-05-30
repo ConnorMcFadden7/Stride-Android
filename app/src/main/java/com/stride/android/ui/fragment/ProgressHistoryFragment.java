@@ -9,19 +9,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.stride.android.R;
 import com.stride.android.ioc.FragmentComponent;
-import com.stride.android.ui.presenter.PreviousStepsPresenter;
-import com.stride.android.ui.presenter.view.PreviousStepsViewFactory;
+import com.stride.android.ui.presenter.ProgressHistoryPresenter;
+import com.stride.android.ui.presenter.view.ProgressHistoryViewModelFactory;
 import javax.inject.Inject;
 
 /**
  * Created by connormcfadden on 29/05/16.
  */
-public class PreviousStepsFragment extends BaseFragment {
+public class ProgressHistoryFragment extends BaseFragment {
 
   @BindView(R.id.previous_steps_container) View mParent;
 
-  @Inject PreviousStepsPresenter previousStepsPresenter;
-  @Inject PreviousStepsViewFactory previousStepsViewFactory;
+  @Inject ProgressHistoryPresenter progressHistoryPresenter;
+  @Inject ProgressHistoryViewModelFactory progressHistoryViewModelFactory;
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
@@ -40,8 +40,7 @@ public class PreviousStepsFragment extends BaseFragment {
     fragmentComponent.inject(this);
   }
 
-  //// TODO: 29/05/16 if nothing then show a 'No History text'
   private void presentPreviousSteps() {
-    previousStepsPresenter.present(previousStepsViewFactory.create(mParent));
+    progressHistoryPresenter.present(progressHistoryViewModelFactory.create(mParent));
   }
 }

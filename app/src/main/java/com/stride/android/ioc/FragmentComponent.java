@@ -7,7 +7,7 @@ import com.stride.android.ui.dialog.BaseDialogFragment;
 import com.stride.android.ui.fragment.BaseFragment;
 import com.stride.android.ui.fragment.DashboardFragment;
 import com.stride.android.ui.fragment.AchievementFragment;
-import com.stride.android.ui.fragment.PreviousStepsFragment;
+import com.stride.android.ui.fragment.ProgressHistoryFragment;
 import com.stride.android.ui.widget.AchievementDialogFragment;
 import dagger.Subcomponent;
 
@@ -27,5 +27,5 @@ import dagger.Subcomponent;
 
   void inject(AchievementDialogFragment achievementDialogFragment);
 
-  void inject(PreviousStepsFragment previousStepsFragment);
+  void inject(ProgressHistoryFragment progressHistoryFragment);
 }

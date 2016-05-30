@@ -65,7 +65,7 @@ public class SensorListener extends Service implements SensorEventListener {
       achievementGenerator.setWalkOneReached(steps);
       achievementGenerator.setWalkTwoReached(steps);
 
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
       String date = sdf.format(new Date());
       stepsProvider.insertSteps(date, steps);
 

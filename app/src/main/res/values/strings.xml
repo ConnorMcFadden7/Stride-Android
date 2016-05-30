@@ -48,5 +48,6 @@
 
   <!-- Progress History -->
   <string name="progress_history_steps">%s s</string>
+  <string name="progress_no_history">No previous history</string>
 
 </resources>

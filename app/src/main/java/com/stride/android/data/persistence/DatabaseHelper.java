@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.stride.android.data.model.ProgressHistory;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -97,5 +100,25 @@ import javax.inject.Singleton;
     }
     stepsCursor.close();
     return steps;
+  }
+
+  public List<ProgressHistory> getProgressHistory() {
+    List<ProgressHistory> progressHistories = new ArrayList<>();
+
+    Cursor progressCursor = getReadableDatabase().rawQuery("SELECT * FROM progress", null);
+    if (progressCursor.moveToFirst()) {
+      while (!progressCursor.isAfterLast()) {
+        int steps = progressCursor.getInt(0);
+        String date = progressCursor.getString(1);
+
+        ProgressHistory progressHistory = new ProgressHistory();
+        progressHistory.steps = steps;
+        progressHistory.date = date;
+        progressHistories.add(progressHistory);
+        progressCursor.moveToNext();
+      }
+    }
+
+    return progressHistories;
   }
 }
