@@ -9,6 +9,7 @@
       android:title="@string/action_upgrade_to_pro"
       android:orderInCategory="100"
       app:showAsAction="never"
+      android:visible="false"
       />
 
   <item
@@ -16,6 +17,7 @@
       android:title="@string/action_settings"
       android:orderInCategory="100"
       app:showAsAction="never"
+      android:visible="false"
       />
 
 
