@@ -10,7 +10,7 @@ import com.stride.android.R;
  */
 public class SplashActivity extends BaseActivity {
 
-  private static final int SPLASH_SCREEN_DURATION = 4000;
+  private static final int SPLASH_SCREEN_DURATION = 3000;
 
   @Override public boolean isHomeAsUpEnabled() {
     return false;

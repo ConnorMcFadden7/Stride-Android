@@ -106,7 +106,8 @@ import javax.inject.Singleton;
   public List<ProgressHistory> getProgressHistory() {
     List<ProgressHistory> progressHistories = new ArrayList<>();
 
-    Cursor progressCursor = getReadableDatabase().rawQuery("SELECT * FROM progress", null);
+    Cursor progressCursor =
+        getReadableDatabase().rawQuery("SELECT * FROM progress ORDER BY rowid DESC", null);
     if (progressCursor.moveToFirst()) {
       while (!progressCursor.isAfterLast()) {
         int steps = progressCursor.getInt(0);
