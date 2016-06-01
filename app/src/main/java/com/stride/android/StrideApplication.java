@@ -8,7 +8,6 @@ import com.stride.android.ioc.ApplicationComponent;
 import com.stride.android.ioc.DaggerApplicationComponent;
 import com.stride.android.ioc.ServiceLocator;
 import com.stride.android.ioc.module.ApplicationModule;
-import com.stride.android.util.StethoUtil;
 import io.fabric.sdk.android.Fabric;
 import javax.inject.Inject;
 
@@ -17,7 +16,7 @@ public class StrideApplication extends Application {
   private static StrideApplication sStrideApplication;
   @Inject ServiceLocator mServiceLocator;
   @Inject Bus mBus;
-  @Inject StethoUtil mStethoUtil;
+//  @Inject StethoUtil mStethoUtil;
   private ApplicationComponent mComponent;
 
   @Override public void onCreate() {
@@ -29,7 +28,7 @@ public class StrideApplication extends Application {
     mBus.register(this);
 
     //// TODO: 27/05/16 only if debug build
-    mStethoUtil.initStetho(this);
+    // mStethoUtil.initStetho(this);
   }
 
   @Override public void onTerminate() {

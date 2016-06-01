@@ -29,7 +29,6 @@ public class BaseDialogFragment extends DialogFragment {
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    //getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimations;
     mFragmentComponent = getBaseActivity().getActivityComponent().from(new FragmentModule(this));
     injectFragment(mFragmentComponent);
   }

@@ -25,13 +25,11 @@ import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
 
-  private static final String TEST_DEVICE_NEXUS_5 = "5E06724163EDE1D63AA54BFC8581E828";
   private static final int DELAY_BEFORE_DISPLAYING_INT_ADS = 120000;
 
   @BindView(R.id.container_main) View mParent;
   @BindView(R.id.ad_view) AdView mAdView;
 
-  // maybe a better helper method like a Provider to get the steps
   @Inject MainPresenter mainPresenter;
   @Inject MainViewFactory mainViewFactory;
   @Inject ActivityFacade activityFacade;
@@ -117,16 +115,17 @@ public class MainActivity extends BaseActivity {
   }
 
   private void initAdMob() {
-    AdRequest adRequest = new AdRequest.Builder().addTestDevice(TEST_DEVICE_NEXUS_5).build();
+    AdRequest adRequest = new AdRequest.Builder().build();
 
     mAdView.setVisibility(View.VISIBLE);
     mAdView.loadAd(adRequest);
   }
 
+  //// TODO: 01/06/16
   private void initInterstitialAds() {
     mInterstitialAd = new InterstitialAd(this);
     mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id));
-    AdRequest adRequest = new AdRequest.Builder().addTestDevice(TEST_DEVICE_NEXUS_5).build();
+    AdRequest adRequest = new AdRequest.Builder().build();
     mInterstitialAd.loadAd(adRequest);
     mInterstitialAd.setAdListener(new AdListener() {
       @Override public void onAdLoaded() {

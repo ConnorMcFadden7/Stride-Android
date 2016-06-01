@@ -41,8 +41,4 @@ public class StepsProvider {
 
     return totalSteps;
   }
-
-  public boolean isFirstEntry() {
-    return databaseHelper.isFirstEntry();
-  }
 }

@@ -1,4 +1,4 @@
-package com.hairapp.android.service;
+package com.stride.android.service;
 
 import android.os.Handler;
 import android.os.Looper;

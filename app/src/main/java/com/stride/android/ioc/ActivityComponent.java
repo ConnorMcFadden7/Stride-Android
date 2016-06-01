@@ -22,7 +22,5 @@ import dagger.Subcomponent;
   void inject(BaseActivity activity);
 
   void inject(MainActivity activity);
-
-  //void inject(OnboardingActivity activity);
 }
 

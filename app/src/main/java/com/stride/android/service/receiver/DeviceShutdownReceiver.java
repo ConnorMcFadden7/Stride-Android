@@ -7,7 +7,7 @@ import android.content.Intent;
 /**
  * Created by connormcfadden on 23/05/16.
  */
-public class RebootReceiver extends BroadcastReceiver {
+public class DeviceShutdownReceiver extends BroadcastReceiver {
 
   @Override public void onReceive(final Context context, final Intent intent) {
     //// TODO: 01/06/16 build 

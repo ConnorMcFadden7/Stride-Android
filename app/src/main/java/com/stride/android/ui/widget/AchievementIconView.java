@@ -1,6 +1,5 @@
 package com.stride.android.ui.widget;
 
-import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
 import android.content.Context;

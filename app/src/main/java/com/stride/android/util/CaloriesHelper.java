@@ -12,7 +12,7 @@ public class CaloriesHelper {
   }
 
   public int getCalories(int steps) {
-    // actual algorithm
+    // // TODO: 01/06/16 unfinished; a real algorithm
     return steps + 30;
   }
 }

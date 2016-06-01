@@ -56,7 +56,7 @@
     </receiver>
 
     <receiver
-        android:name=".service.receiver.ShutdownReceiver">
+        android:name=".service.receiver.DeviceShutdownReceiver">
       <intent-filter>
         <action android:name="android.intent.action.ACTION_SHUTDOWN"/>
         <action android:name="de.j4velin.ACTION_SHUTDOWN"/>
