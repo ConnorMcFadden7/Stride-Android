@@ -57,6 +57,7 @@ dependencies {
   compile 'com.anjlab.android.iab.v3:library:1.0.31'
   compile 'com.google.android.gms:play-services-ads:8.4.0'
   compile 'com.github.ishan1604:uberprogressview:v1.1.0'
+  compile 'io.reactivex:rxjava:1.1.2'
 
   /** DAGGER 2 **/
   provided 'org.glassfish:javax.annotation:10.0-b28'

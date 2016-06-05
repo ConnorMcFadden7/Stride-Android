@@ -5,11 +5,19 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import com.stride.android.data.model.ProgressHistory;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by connormcfadden on 23/05/16.
@@ -69,6 +77,18 @@ import javax.inject.Singleton;
     }
   }
 
+  /**
+   * Creates an Observable which emits the average step count.
+   */
+  public Observable<Integer> getAverageStepsRx() {
+    return Observable.create(new Observable.OnSubscribe<Integer>() {
+      @Override public void call(Subscriber<? super Integer> subscriber) {
+        subscriber.onNext(getAverageSteps());
+        subscriber.onCompleted();
+      }
+    }).subscribeOn(Schedulers.io());
+  }
+
   public int getAverageSteps() {
     Cursor cursor =
         getReadableDatabase().query("progress", new String[] { "AVG(steps)" }, "date > 0", null,
@@ -89,6 +109,18 @@ import javax.inject.Singleton;
     return re;
   }
 
+  /**
+   * Creates an Observable which emits the steps for a given date.
+   */
+  public Observable<Integer> getStepsForDateRx(final String date) {
+    return Observable.create(new Observable.OnSubscribe<Integer>() {
+      @Override public void call(Subscriber<? super Integer> subscriber) {
+        subscriber.onNext(getStepsForDate(date));
+        subscriber.onCompleted();
+      }
+    });
+  }
+
   public int getStepsForDate(final String date) {
     Cursor stepsCursor =
         getReadableDatabase().query("progress", new String[] { "steps" }, "date = ?",
@@ -100,6 +132,18 @@ import javax.inject.Singleton;
     }
     stepsCursor.close();
     return steps;
+  }
+
+  /**
+   * Creates an Observable which emits the list of progress history.
+   */
+  public Observable<List<ProgressHistory>> getProgressHistoryRx() {
+    return Observable.create(new Observable.OnSubscribe<List<ProgressHistory>>() {
+      @Override public void call(Subscriber<? super List<ProgressHistory>> subscriber) {
+        subscriber.onNext(getProgressHistory());
+        subscriber.onCompleted();
+      }
+    }).subscribeOn(Schedulers.io());
   }
 
   public List<ProgressHistory> getProgressHistory() {
